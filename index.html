@@ -1,0 +1,1694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Baffin Cabin on Baffin Bay, Texas: guest waiver, what to bring, amenities and directions.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>const FIREBASE_CONFIG = {"apiKey": "AIzaSyAmcBYoNU01F148TJUSOBNNtFHL6XhoAoo", "authDomain": "baffin-cabin.firebaseapp.com", "projectId": "baffin-cabin", "storageBucket": "baffin-cabin.firebasestorage.app", "messagingSenderId": "738647990536", "appId": "1:738647990536:web:4744f162280e9dacca4cbd"};</script>
+<title>Baffin Cabin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a coastal-rental landing. Full-bleed sunset-over-the-pier photo under a see-through header, a three-step "plan your stay",
+   a seafoam amenities band and a shoreline footer. Members get a side-rail workspace. */
+:root {
+  --bg: #f5f8f7;          /* salt-air white */
+  --surface: #ffffff;
+  --sunk: #e6f1ee;        /* seafoam mist */
+  --ink: #0e2a3c;         /* deep Gulf navy */
+  --muted: #587080;
+  --line: #d3e1de;
+  --accent: #0e2a3c;      /* navy buttons */
+  --accent-ink: #ffffff;
+  --sea: #8fcfbe;         /* the cabin's own seafoam */
+  --sea-deep: #2f7f72;
+  --sun: #d99a4e;         /* late-day sand gold */
+  --sun-soft: #fbefdc;
+  --ok: #2f7d4f;
+  --warn: #b0562a;
+  --glass: rgb(255 255 255 / .82);
+  --glass-edge: rgb(255 255 255 / .6);
+  --f-display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --f-body: "Jost", "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+  --f-data: "DM Mono", ui-monospace, Menlo, monospace;
+  --r: 8px;
+  --shadow: 0 1px 2px rgb(14 42 60 / .05), 0 10px 30px rgb(14 42 60 / .06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1822; --surface: #10222e; --sunk: #142d39; --ink: #e8f1ef; --muted: #9db4bd; --line: #223e4b;
+    --accent: #8fcfbe; --accent-ink: #0a1822; --sea: #8fcfbe; --sea-deep: #8fcfbe; --sun: #e8b46e; --sun-soft: #33291a;
+    --ok: #6cc28e; --warn: #e89a6c; --glass: rgb(10 24 34 / .78); --glass-edge: rgb(255 255 255 / .1);
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .25); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1822; --surface: #10222e; --sunk: #142d39; --ink: #e8f1ef; --muted: #9db4bd; --line: #223e4b;
+  --accent: #8fcfbe; --accent-ink: #0a1822; --sea: #8fcfbe; --sea-deep: #8fcfbe; --sun: #e8b46e; --sun-soft: #33291a;
+  --ok: #6cc28e; --warn: #e89a6c; --glass: rgb(10 24 34 / .78); --glass-edge: rgb(255 255 255 / .1);
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .25); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { overflow-x: clip; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--f-body); }
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 600; text-wrap: balance; line-height: 1.1; margin: 0; letter-spacing: .005em; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.5rem); }
+h3 { font-size: 1.4rem; }
+p { margin: 0; }
+a { color: var(--sea-deep); }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--sun); outline-offset: 2px; }
+
+/* header: solid on inner pages, see-through over the photo on the welcome page */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); transition: background .25s, border-color .25s, color .25s; }
+.top-in { max-width: 1120px; margin: 0 auto; padding: 12px 16px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px 24px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+.brand svg { width: 34px; height: 34px; flex: none; }
+.brand-word { display: grid; line-height: 1; }
+.brand-word b { font: 600 1.45rem/1 var(--f-display); letter-spacing: .01em; }
+.brand-word small { font: 500 .62rem/1.4 var(--f-body); letter-spacing: .26em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+.tabs { display: flex; gap: 2px; justify-content: center; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.tabs a { white-space: nowrap; text-decoration: none; color: var(--muted); padding: 8px 12px; font-size: .78rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; border-bottom: 2px solid transparent; }
+.tabs a:hover { color: var(--ink); }
+.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--sun); }
+.side-btn { border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 999px; padding: 8px 16px; font: 500 .74rem/1 var(--f-body); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+.side-btn svg { width: 14px; height: 14px; }
+@media (max-width: 820px) {
+  .top-in { grid-template-columns: 1fr auto; }
+  .tabs { grid-column: 1 / -1; justify-content: flex-start; order: 3; margin-inline: -8px; }
+}
+body.home .top { position: fixed; left: 0; right: 0; top: 0; padding-top: env(safe-area-inset-top, 0px); background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; color: #fff; }
+body.home .top .brand-word small, body.home .top .tabs a { color: rgb(255 255 255 / .85); text-shadow: 0 1px 8px rgb(0 0 0 / .35); }
+body.home .top .brand-word b { text-shadow: 0 1px 10px rgb(0 0 0 / .35); }
+body.home .top .tabs a[aria-current="page"] { color: #fff; }
+body.home .top .side-btn { border-color: rgb(255 255 255 / .85); color: #fff; background: rgb(10 30 45 / .2); }
+body.home .top.solid { background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom-color: var(--line); color: var(--ink); }
+body.home .top.solid .brand-word small, body.home .top.solid .tabs a { color: var(--muted); text-shadow: none; }
+body.home .top.solid .brand-word b { text-shadow: none; }
+body.home .top.solid .tabs a[aria-current="page"] { color: var(--ink); }
+body.home .top.solid .side-btn { border-color: var(--ink); color: var(--ink); background: transparent; }
+
+main { max-width: 1120px; margin: 0 auto; padding: 40px 16px 72px; }
+.panel { display: grid; gap: 22px; min-width: 0; }
+.lede { color: var(--muted); max-width: 62ch; font-size: 1.05rem; font-weight: 300; }
+.eyebrow { font: 500 .7rem/1.3 var(--f-body); text-transform: uppercase; letter-spacing: .24em; color: var(--sea-deep); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; box-shadow: var(--shadow); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.grid2 > * { min-width: 0; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.spacer { flex: 1; }
+
+.btn { border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); padding: 12px 22px; border-radius: 999px; font: 500 .78rem/1.1 var(--f-body); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn:hover { filter: brightness(1.12); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.small { padding: 7px 14px; font-size: .7rem; }
+.btn:disabled { opacity: .45; cursor: not-allowed; filter: none; }
+.linkbtn { border: 0; background: none; color: var(--muted); cursor: pointer; padding: 4px; font-size: .85rem; text-decoration: underline; text-underline-offset: 3px; }
+
+label { display: grid; gap: 4px; font-weight: 500; font-size: .9rem; }
+label .hint { font-weight: 400; color: var(--muted); font-size: .8rem; }
+input[type=text], input[type=email], input[type=tel], input[type=date], input[type=number], input[type=url], input[type=password], textarea, select {
+  width: 100%; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 10px 12px; min-width: 0;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--sea-deep); outline: none; box-shadow: 0 0 0 3px rgb(143 207 190 / .35); }
+textarea { resize: vertical; min-height: 90px; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.fields > * { min-width: 0; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+.check input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+
+.notice { background: var(--sun-soft); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+.empty { color: var(--muted); padding: 22px; text-align: center; border: 1px dashed var(--line); border-radius: var(--r); }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 8px; font-weight: 500; z-index: 20; max-width: calc(100% - 32px); }
+
+/* guest info lists */
+.list-plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.list-plain li { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; }
+.list-plain li:last-child { border-bottom: 0; }
+.list-plain li::before { content: ""; width: 7px; height: 7px; margin-top: .55em; border-radius: 2px; background: var(--sun); flex: none; }
+.edit-area { display: grid; gap: 10px; }
+
+/* waiver */
+.waiver-text { max-height: 420px; overflow: auto; background: var(--sunk); border-radius: 8px; padding: 6px 18px 16px; font-size: .9rem; }
+.waiver-text p { margin: .6em 0; max-width: 72ch; }
+.waiver-text ul { margin: .4em 0 .8em; padding-left: 1.3em; }
+.waiver-text li { margin: .2em 0; }
+.waiver-text .w-sec { font: 700 1.2rem/1.3 var(--f-display); margin: 1.3em 0 .3em; letter-spacing: .02em; }
+.waiver-text .w-sub { font: 500 .72rem/1.3 var(--f-data); letter-spacing: .1em; color: var(--muted); margin: 1.1em 0 .2em; }
+.sig-wrap { border: 1px dashed var(--muted); border-radius: 8px; background: var(--surface); position: relative; }
+.sig-wrap canvas { display: block; width: 100%; height: 150px; touch-action: none; cursor: crosshair; }
+.sig-wrap .base { position: absolute; left: 16px; right: 16px; bottom: 34px; border-bottom: 1px solid var(--line); pointer-events: none; }
+.sig-wrap .x { position: absolute; left: 16px; bottom: 38px; font-family: var(--f-display); color: var(--muted); pointer-events: none; }
+
+/* members gate */
+.gate { max-width: 420px; margin: 40px auto; display: grid; gap: 14px; text-align: left; }
+
+/* guest book */
+.post { display: grid; gap: 8px; }
+.post-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.post-head strong { font-family: var(--f-display); font-size: 1.3rem; }
+.tag { font: 500 .7rem/1 var(--f-data); text-transform: uppercase; letter-spacing: .08em; padding: 4px 7px; border-radius: 4px; background: var(--sunk); color: var(--muted); }
+.tag.fish { background: var(--sun-soft); color: var(--ink); }
+.meta { color: var(--muted); font-size: .82rem; }
+.catch { display: flex; flex-wrap: wrap; gap: 6px 16px; font: .82rem/1.4 var(--f-data); color: var(--muted); }
+.catch b { color: var(--ink); font-weight: 500; }
+.post-body { white-space: pre-wrap; }
+.ck-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; align-items: start; }
+.ck-grid h3 { color: var(--sea-deep); }
+.ck-bar { height: 6px; border-radius: 3px; background: var(--sunk); overflow: hidden; }
+.ck-bar span { display: block; height: 100%; background: var(--accent); transition: width .3s; }
+.rec-years { display: flex; flex-wrap: wrap; gap: 8px; }
+.rec-years button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; cursor: pointer; color: var(--muted); }
+.rec-years button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.rec-grid h3 { color: var(--sea-deep); }
+.rec-lead { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.rec-lead img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; cursor: zoom-in; }
+.rec-big { font: 600 1.6rem/1 var(--f-display); color: var(--ink); }
+.rec-rows { list-style: none; margin: 0; padding: 0; counter-reset: r 1; }
+.rec-rows li { display: flex; gap: 10px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: .92rem; counter-increment: r; }
+.rec-rows li::before { content: counter(r); color: var(--muted); font-size: .8rem; width: 16px; flex: none; }
+.rec-rows li:last-child { border-bottom: 0; }
+.map-place { display: grid; gap: 2px; padding-top: 8px; border-top: 1px solid var(--line); }
+.map-place strong { font-weight: 600; }
+.list-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px 32px; }
+.list-groups h3 { margin: 0 0 6px; font-size: 1.15rem; color: var(--sea-deep); }
+.cp-strip { display: flex; flex-wrap: wrap; gap: 8px; }
+.cp-thumb { position: relative; padding: 0; border: 0; width: 92px; height: 92px; border-radius: 8px; overflow: hidden; background: var(--sunk); cursor: zoom-in; flex: none; }
+.cp-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cp-x { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; border: 0; background: rgb(8 26 38 / .75); color: #fff; font-size: .8rem; line-height: 22px; text-align: center; cursor: pointer; }
+.cond-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.cond-card { display: grid; gap: 10px; align-content: start; }
+.cond-card h3 { margin: 0; }
+.spots-form { display: grid; gap: 10px; }
+.spot-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 10px; }
+.spot-row label + label { color: var(--muted); }
+@media (max-width: 640px) { .spot-row { grid-template-columns: 1fr; gap: 6px; padding-bottom: 8px; border-bottom: 1px solid var(--line); } }
+.spots { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: .92rem; }
+.spots li { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: baseline; }
+.spot-notes { grid-column: 2; color: var(--muted); }
+.kind-switch { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.kind-switch button { border: 0; background: var(--surface); padding: 8px 16px; cursor: pointer; color: var(--muted); font-size: .9rem; }
+.kind-switch button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.g-links { list-style: none; margin: 0; padding: 0; display: grid; }
+.g-links li + li { border-top: 1px solid var(--line); }
+.g-links button { width: 100%; display: flex; align-items: baseline; gap: 12px; padding: 12px 2px; border: 0; background: none; cursor: pointer; text-align: left; font: 500 1.2rem/1.3 var(--f-display); color: var(--sea-deep); }
+.g-links button span:first-child { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.g-links button:hover span:first-child { color: var(--ink); }
+.g-links .count { margin-left: auto; font: .85rem var(--f-body); color: var(--muted); }
+
+/* checklists */
+.addrow { display: flex; gap: 8px; }
+.addrow input { flex: 1; }
+.items { list-style: none; margin: 0; padding: 0; }
+.items li { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.items li:last-child { border-bottom: 0; }
+.items input[type=checkbox] { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--accent); flex: none; }
+.items .txt { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.items li.done .txt { color: var(--muted); text-decoration: line-through; }
+.items .who { color: var(--muted); font-size: .78rem; }
+.count { font: 500 .8rem var(--f-data); color: var(--muted); }
+
+/* waivers table */
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 .72rem var(--f-data); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+td.num { font-variant-numeric: tabular-nums; font-family: var(--f-data); font-size: .82rem; }
+td img { height: 34px; background: #fff; border-radius: 4px; }
+
+.cal-hero { display: grid; gap: 12px; }
+
+/* welcome landing */
+.hero { position: relative; min-height: clamp(560px, 92vh, 980px); display: flex; align-items: flex-end; color: #fff;
+  background: #d9692e url("pier.jpg") 59% 52% / cover no-repeat; }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(8 24 36 / .35) 0%, rgb(8 24 36 / 0) 22%, rgb(8 24 36 / 0) 62%, rgb(8 24 36 / .45) 100%); }
+.hero-in { position: relative; width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 16px 40px; }
+.hero-card { max-width: 460px; display: grid; gap: 8px; padding: 16px 20px; border-radius: 10px; background: rgb(8 26 38 / .2); border: 1px solid rgb(255 255 255 / .25);
+  backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); text-shadow: 0 1px 8px rgb(0 0 0 / .45); }
+.hero-kicker { font: 500 .7rem/1 var(--f-body); letter-spacing: .3em; text-transform: uppercase; color: var(--sea); }
+.hero-title { font-size: clamp(2rem, 5vw, 3rem); line-height: 1; font-weight: 600; text-wrap: balance; }
+.hero-title span { display: block; font-style: italic; font-weight: 500; font-size: .5em; letter-spacing: .01em; margin-bottom: .2em; color: rgb(255 255 255 / .9); }
+.hero-text { font-size: .92rem; font-weight: 400; max-width: 46ch; color: #fff; line-height: 1.5; }
+.hero .btn { padding: 9px 16px; font-size: .68rem; text-shadow: none; }
+.hero .btn.light { background: #fff; border-color: #fff; color: #0e2a3c; }
+.hero .btn.clear { background: transparent; border-color: rgb(255 255 255 / .8); color: #fff; }
+@media (max-width: 520px) { .hero { background-position: 35% 30%; } .hero-card { padding: 14px 16px; } .hero-in { padding-bottom: 16px; } .hero-text { font-size: .86rem; } }
+
+body.home main { padding-top: 64px; }
+.sec-head { display: grid; gap: 8px; max-width: 640px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.steps a { display: grid; gap: 10px; height: 100%; padding: 26px 24px; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s; }
+.steps a:hover { transform: translateY(-3px); }
+.step-n { font: italic 600 2.6rem/1 var(--f-display); color: var(--sun); }
+.steps .go { margin-top: auto; font: 500 .72rem/1 var(--f-body); letter-spacing: .16em; text-transform: uppercase; color: var(--sea-deep); }
+
+.band { width: 100vw; margin-left: calc(50% - 50vw); background: var(--sunk); padding-block: 56px; margin-block: 24px; }
+.band-in { max-width: 1120px; margin: 0 auto; padding-inline: 16px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 32px; align-items: start; }
+@media (max-width: 760px) { .band-in { grid-template-columns: 1fr; } }
+.amen { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0 28px; }
+.amen li { display: flex; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.amen li::before { content: ""; width: 14px; height: 6px; flex: none; border-radius: 3px; background: var(--sea); transform: translateY(-2px); }
+.home-tools { display: flex; justify-content: flex-end; }
+
+/* footer */
+.foot { color: #dfeeea; background: #0e2a3c; margin-top: 24px; }
+.foot svg { display: block; width: 100%; height: 34px; background: var(--bg); }
+.foot-in { max-width: 1120px; margin: 0 auto; padding: 28px 16px calc(36px + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 10px 32px; align-items: baseline; justify-content: space-between; }
+.foot-word { font: 600 1.6rem/1 var(--f-display); color: #fff; }
+.foot-tag { font: italic 500 1.35rem/1 var(--f-display); color: #8fcfbe; }
+.foot .meta { color: #a8c2c9; }
+
+/* members workspace */
+.m-layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 36px; align-items: start; }
+.m-side { position: sticky; top: calc(var(--top-h, 65px) + 24px); max-height: calc(100vh - var(--top-h, 65px) - 40px); overflow-y: auto; display: grid; align-content: start; gap: 2px; z-index: 5; }
+.m-side .eyebrow { padding: 0 12px 8px; }
+.m-side a { padding: 9px 12px; border-radius: 6px; color: var(--muted); text-decoration: none; border-left: 2px solid transparent; }
+.m-side a:hover { color: var(--ink); background: var(--sunk); }
+.m-side a[aria-current="page"] { color: var(--ink); background: var(--sunk); border-left-color: var(--sea-deep); font-weight: 500; }
+.m-side .linkbtn { justify-self: start; margin: 12px 8px 0; }
+@media (max-width: 820px) {
+  .m-layout { grid-template-columns: 1fr; gap: 20px; }
+  .m-side { position: sticky; top: var(--top-h, 65px); max-height: none; overflow-y: hidden; display: flex; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); background: var(--bg); margin-inline: -16px; padding-inline: 8px; }
+  .m-side .eyebrow, .m-side .linkbtn { display: none; }
+  .m-side a { white-space: nowrap; border-left: 0; border-bottom: 2px solid transparent; border-radius: 0; }
+  .m-side a[aria-current="page"] { background: none; border-bottom-color: var(--sea-deep); }
+}
+
+/* grocery groups */
+.g-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.g-groups > * { min-width: 0; }
+.g-group { display: grid; gap: 6px; }
+.g-head { display: flex; align-items: baseline; gap: 10px; justify-content: space-between; border-bottom: 1px solid var(--sea); padding-bottom: 8px; }
+.g-guest { display: grid; gap: 12px; border-left: 4px solid var(--sun); }
+.g-sub input { padding: 6px 10px; font-size: .9rem; }
+.g-example { margin: 0; background: var(--sunk); border-radius: 8px; padding: 10px 14px; font: .85rem/1.5 var(--f-data); overflow-x: auto; }
+.g-preview { display: grid; gap: 6px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+/* member contacts */
+.ct-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; align-items: start; }
+.ct-list > * { min-width: 0; }
+.ct { display: grid; gap: 10px; }
+.ct-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--sea); padding-bottom: 8px; }
+.ct-top h3 { color: var(--sea-deep); font-weight: 700; }
+.ct-line { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.ct-val { overflow-wrap: anywhere; user-select: all; font-variant-numeric: tabular-nums; }
+
+/* photo album */
+.album { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.ph { padding: 0; border: 0; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--sunk); cursor: zoom-in; max-width: 100%; }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s; }
+.ph:hover img { transform: scale(1.03); }
+.ph-wrap { position: relative; min-width: 0; }
+.ph-wrap .ph { width: 100%; display: block; }
+.am-gallery { display: grid; gap: 10px; margin-bottom: 22px; }
+.am-hero { padding: 0; border: 0; border-radius: 14px; overflow: hidden; cursor: zoom-in; background: var(--sunk); box-shadow: 0 10px 30px rgb(8 26 38 / .18); }
+.am-hero video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.am-hero { cursor: default; }
+.am-strip { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(140px, 22%); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; -webkit-overflow-scrolling: touch; }
+.am-thumb { padding: 0; border: 0; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; cursor: zoom-in; background: var(--sunk); scroll-snap-align: start; }
+.am-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 640px) { .am-strip { grid-auto-columns: 42%; } .am-hero video { aspect-ratio: 4 / 3; } }
+.album.editing .ph { cursor: default; opacity: .85; }
+.show { margin: 6px 0 34px; }
+.show-stage { position: relative; height: min(68vh, 560px); border-radius: 14px; overflow: hidden; background: #0b1c26; box-shadow: 0 10px 30px rgb(8 26 38 / .25); }
+.show-bg { position: absolute; inset: -30px; background: center / cover no-repeat; filter: blur(26px) brightness(.55); }
+.show-img { position: relative; display: block; width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; transition: opacity .25s ease; }
+.show-img.fading { opacity: 0; }
+.show-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 0; background: rgb(255 255 255 / .18); color: #fff; font-size: 1.8rem; line-height: 1; cursor: pointer; backdrop-filter: blur(4px); }
+.show-nav:hover { background: rgb(255 255 255 / .3); }
+.show-nav.prev { left: 12px; } .show-nav.next { right: 12px; }
+.show-bar { display: flex; align-items: baseline; gap: 12px; padding: 10px 2px 0; }
+.show-cap { min-width: 0; overflow-wrap: anywhere; }
+.show-count { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); white-space: nowrap; }
+@media (max-width: 640px) { .show-stage { height: min(58vh, 420px); } .show-nav { width: 38px; height: 38px; } }
+.ph-del { position: absolute; left: 8px; right: 8px; bottom: 8px; border: 0; border-radius: 999px; padding: 7px 10px; background: rgb(255 255 255 / .92); color: #0e2a3c; font: 500 .72rem/1 var(--f-body); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / .25); }
+.ph-del.armed { background: #b0562a; color: #fff; }
+.lb { position: fixed; inset: 0; z-index: 30; background: rgb(8 16 18 / .94); color: #eef3f2; display: grid; grid-template-rows: auto 1fr auto; padding: calc(10px + env(safe-area-inset-top, 0px)) 16px calc(14px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
+.lb .count, .lb .meta { color: #a9bcbd; }
+.lb-bar { display: flex; align-items: center; gap: 10px; }
+.lb-btn { background: none; border: 1px solid #4b6266; color: #eef3f2; border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+.lb-stage { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 0; }
+.lb-stage img { max-height: 100%; max-width: calc(100% - 80px); object-fit: contain; border-radius: 6px; }
+.lb-nav { background: rgb(255 255 255 / .1); border: 0; color: #fff; font-size: 2rem; width: 36px; height: 56px; border-radius: 8px; cursor: pointer; flex: none; }
+.lb-foot { display: grid; gap: 8px; max-width: 640px; width: 100%; margin: 0 auto; }
+.lb-foot input { background: #16242a; color: #eef3f2; border-color: #4b6266; }
+.lb .linkbtn { color: #a9bcbd; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="brand" href="#welcome" aria-label="The Baffin Cabin, home">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16.2" fill="#0e2a3c" stroke="#fff" stroke-width=".9" stroke-opacity=".75"/><g transform="translate(3.4 4.6) scale(.28) rotate(16 50 42)"><path d="M36 10.5 35 1.5 41 7 42 -.5 47.5 6.5 50 1 56 10.5Z" fill="#fff"/><path d="M19 17 10 12.5 14 25Z" fill="#fff"/><path d="M98 44C92 34 80 20 64 15 50 9 32 8 22 14 14 20 10 28 12 36C8 44 3 51 -2 56 4 56 10 58 14 62 15 70 15 78 13 86 20 74 24 58 25 42C34 38 46 38 58 42 70 46 82 52 93 55L84 50Z" fill="#fff"/><path d="M50 39.5 40 55 57 42.5Z" fill="#fff"/><path d="M63 37 47 49 66 43Z" fill="#fff"/><path d="M71 21C64 29 64 41 72 50" fill="none" stroke="#0e2a3c" stroke-width="2" stroke-linecap="round"/><path d="M63 37 52 45" fill="none" stroke="#0e2a3c" stroke-width="1.4" stroke-linecap="round"/><path d="M13 37C16 39 19 41 23 42" fill="none" stroke="#0e2a3c" stroke-width="1.4" stroke-linecap="round"/><circle cx="84" cy="35" r="2.8" fill="#0e2a3c"/><circle cx="84.8" cy="34.2" r=".9" fill="#fff"/><g fill="#0e2a3c"><circle cx="24" cy="22" r="1.3"/><circle cx="29" cy="16" r="1.3"/><circle cx="30" cy="24" r="1.3"/><circle cx="36" cy="14" r="1.3"/><circle cx="36" cy="21" r="1.3"/><circle cx="35" cy="29" r="1.2"/><circle cx="42" cy="17" r="1.3"/><circle cx="43" cy="25" r="1.2"/><circle cx="48" cy="14" r="1.2"/><circle cx="49" cy="21" r="1.2"/><circle cx="55" cy="17" r="1.2"/><circle cx="55" cy="25" r="1.1"/><circle cx="61" cy="20" r="1.1"/><circle cx="19" cy="28" r="1.1"/><circle cx="76" cy="27" r="1"/><circle cx="78" cy="42" r="1"/></g></g></svg>
+      <span class="brand-word"><b>The Baffin Cabin</b><small>Baffin Bay · Texas</small></span>
+    </a>
+    <nav class="tabs" id="tabs" aria-label="Guest pages"></nav>
+    <button type="button" class="side-btn" id="side-toggle"></button>
+  </div>
+</header>
+
+<section class="hero" id="hero" hidden>
+  <div class="hero-in">
+    <div class="hero-card">
+      <p class="hero-kicker">Baffin Bay PC1409 · Texas Coast</p>
+      <h2 class="hero-title"><span>Welcome to</span>The Baffin Cabin</h2>
+      <p class="hero-text" id="hero-text"></p>
+      <div class="row"><a class="btn light" href="#waiver">Sign the guest waiver</a><a class="btn clear" href="#bring">What to bring</a></div>
+    </div>
+  </div>
+</section>
+<main id="main"></main>
+
+<footer class="foot">
+  <svg viewBox="0 0 1200 34" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34V18c100-14 200-14 300 0s200 14 300 0 200-14 300 0 200 14 300 0v16z" fill="#0e2a3c"/></svg>
+  <div class="foot-in">
+    <div style="display:grid;gap:6px"><p class="foot-word">The Baffin Cabin</p><p class="meta">Baffin Bay PC1409, LLC · Baffin Bay, Texas</p></div>
+    <p class="foot-tag">Tight Lines!</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ---------- defaults (placeholder content the members can edit on the site) ---------- */
+const MEMBER_EMAIL = "members@baffin-cabin.example"; // shared members account; its password is the members passcode
+const DEFAULT_SITE = {
+  welcome: "Welcome to Baffin Bay, a truly special place. Please read through these pages before your trip, and sign the guest waiver before you arrive. Tight Lines!",
+  bring: ["Bedding and pillows (beds have mattress covers only)", "Bath and beach towels", "Groceries and drinks for your stay", "Ice and a cooler", "Sunscreen, hats and bug spray", "Fishing license, rods and tackle", "Trash bags to haul out"],
+  arrival: ["Unlock the cabin and open the shutters", "Turn on power at the breaker panel", "Turn on the water and check for leaks", "Turn on the fridge and freezer", "Set the AC", "Check for storm damage, pests or leaks", "Turn on the dock lights", "Make sure every adult guest has signed the waiver"],
+  departure: ["Empty the fridge and take perishables home", "Wash dishes and wipe down counters", "Sweep the floors", "Hose down the fish cleaning station", "Haul out all trash", "Turn off the AC, lights and dock lights", "Turn off the water", "Set the breakers as posted at the panel", "Close and latch the shutters", "Lock up", "Add anything that needs fixing to Cabin To-Dos"],
+  amenities: ["Sleeps up to 8", "Full kitchen with stove, fridge and coffee maker", "Outdoor grill", "Covered porch with seating", "Fish cleaning station", "Wi-Fi (ask a member for the password)"],
+  locationName: "Baffin Cabin",
+  address: "Address shared by a member before your trip",
+  directions: "Add driving directions, gate codes are shared privately, and where to park.",
+  mapUrl: "",
+  rampName: "Bird Island Boat Ramp", rampUrl: "https://maps.app.goo.gl/k3E3NWoYLMtr1PJ76",
+  waiverTitle: "Guest Acknowledgment of Risk, Assumption of Risk, Release and Liability Waiver",
+  waiverOrg: "Baffin Bay PC1409, LLC",
+  waiverText: "1. NATURE OF THE PROPERTY AND ACTIVITIES\n\nI understand that I am entering and using a remote fishing cabin/camp and related facilities associated with Baffin Bay PC1409, LLC (“Baffin Bay PC1409”).\n\nI understand that the cabin/camp is located on property owned by the State of Texas and that access to and use of the property may involve boating, docks, piers, walkways, fishing, swimming or water exposure, electrical equipment, generators, appliances, tools, cooking equipment, and other activities and equipment commonly associated with a remote fishing camp.\n\nI understand that the property and facilities are not a hotel, resort, commercial lodging establishment, or continuously supervised facility.\n\n2. ACKNOWLEDGMENT OF RISKS\n\nI understand that visiting, accessing, and using the cabin/camp and surrounding property involves inherent and other risks that can result in property damage, serious bodily injury, illness, permanent disability, drowning, electrocution, or death.\n\nI acknowledge that these risks include, but are not limited to:\n\nBOAT, DOCK AND WATER HAZARDS\n\n- Boarding or exiting boats at the dock;\n- Differences in height or movement between a boat and dock;\n- Boats moving unexpectedly because of wind, waves, wakes, tides, currents, or passenger movement;\n- Slipping, tripping, or falling while boarding or exiting a vessel;\n- Slipping, tripping, or falling on docks, decks, piers, stairs, ramps, walkways, or other surfaces;\n- Wet, slippery, uneven, deteriorated, obstructed, or unstable surfaces;\n- Falling from a dock, boat, pier, walkway, or shoreline into the water;\n- Drowning or near-drowning;\n- Contact with boats, engines, propellers, anchors, lines, cleats, pilings, ladders, or other marine equipment;\n- Strong winds, waves, wakes, tides, currents, storms, lightning, and changing weather conditions;\n- Submerged or partially submerged objects; and\n- Marine animals, fish, insects, snakes, stingrays, jellyfish, and other wildlife.\n\nELECTRICAL HAZARDS\n\nI specifically understand that the presence of electricity in or near a marine environment creates potentially serious hazards.\n\nThese hazards may include:\n\n- Electrical shock or electrocution;\n- Electrical wiring, outlets, switches, extension cords, lighting, electrical panels, breakers, transformers, generators, batteries, chargers, pumps, motors, and electrical appliances;\n- Electrical equipment located in or near wet or damp areas;\n- Equipment malfunction or electrical faults;\n- Damage, deterioration, corrosion, improper connections, or unexpected failure of electrical equipment; and\n- Electrical equipment, systems, modifications, or installations installed or maintained at the cabin.\n\nI UNDERSTAND THAT ELECTRICITY IN OR AROUND WATER CAN CAUSE SERIOUS INJURY OR DEATH.\n\nCABIN, EQUIPMENT AND APPLIANCE HAZARDS\n\nI understand that the cabin and camp may contain equipment and appliances that present risks, including:\n\n- Cooking appliances, grills, burners, stoves, ovens, refrigerators, freezers, heaters, and other appliances;\n- Generators and associated electrical or fuel systems;\n- Propane, gasoline, diesel fuel, batteries, and other combustible materials;\n- Hot surfaces, flames, steam, cooking oil, and hot liquids;\n- Carbon monoxide;\n- Tools, knives, fishing equipment, hooks, lines, and other sharp objects;\n- Pumps, motors, mechanical equipment, and moving parts;\n- Furniture, stairs, steps, ladders, doors, decking, flooring, and other structures;\n- Fire, explosion, burns, cuts, falls, electrical shock, or other injuries associated with such equipment or facilities; and\n- Equipment or appliances installed, modified, maintained, or used by members or other persons.\n\nI understand that this list cannot identify every possible hazard associated with the property or activities.\n\n3. VOLUNTARY PARTICIPATION AND ASSUMPTION OF RISK\n\nI voluntarily choose to enter, visit, stay at, and participate in activities at or associated with Baffin Bay PC1409 with knowledge of the risks described above.\n\nTO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, I KNOWINGLY AND VOLUNTARILY ASSUME THE INHERENT AND OTHER RISKS ASSOCIATED WITH ACCESSING, VISITING, STAYING AT, AND USING THE CABIN, DOCKS, BOATS, FACILITIES, EQUIPMENT, APPLIANCES, AND SURROUNDING PROPERTY, INCLUDING THE RISK OF SERIOUS BODILY INJURY, DROWNING, ELECTROCUTION, PERMANENT DISABILITY, AND DEATH.\n\n4. RELEASE AND WAIVER OF LIABILITY\n\nTO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, I RELEASE AND WAIVE CLAIMS AGAINST BAFFIN BAY PC1409, LLC, ITS MEMBERS, MANAGERS, OWNERS, OFFICERS, EMPLOYEES, AGENTS, REPRESENTATIVES, INVITING MEMBERS, AND INSURERS (COLLECTIVELY, THE “RELEASED PARTIES”) FOR PERSONAL INJURY, DEATH, OR PROPERTY DAMAGE ARISING FROM OR RELATED TO MY ACCESS TO, PRESENCE AT, OR USE OF THE CABIN, CAMP, DOCKS, BOATS, FACILITIES, EQUIPMENT, APPLIANCES, OR SURROUNDING PROPERTY, INCLUDING CLAIMS ARISING FROM THE ORDINARY NEGLIGENCE OF A RELEASED PARTY, TO THE EXTENT SUCH CLAIMS MAY LAWFULLY BE RELEASED.\n\nThis release is intended to include, to the fullest extent permitted by applicable law, injuries associated with:\n\n- Boarding or exiting a boat;\n- Slipping, tripping, or falling on a dock, pier, deck, walkway, stairs, or cabin floor;\n- Falling into the water;\n- Drowning or near-drowning;\n- Electrical shock or electrocution;\n- Use or malfunction of electrical systems or equipment;\n- Generators, batteries, chargers, pumps, and related equipment;\n- Cooking equipment, grills, appliances, and other cabin equipment;\n- Fire, burns, carbon monoxide, or fuel-related hazards;\n- Fishing and boating activities; and\n- Other conditions or equipment located at or associated with the cabin or camp.\n\nThis release does not waive claims that cannot legally be waived under applicable law.\n\n5. GUEST RESPONSIBILITIES AND SAFETY RULES\n\nAs a condition of being a guest, I agree to exercise reasonable care for my own safety and the safety of others.\n\nI agree to:\n\n- Use caution while boarding and exiting boats;\n- Use available handrails, handholds, ladders, and other safety equipment as appropriate;\n- Keep docks, walkways, stairs, and exits reasonably clear;\n- Use particular caution on wet or slippery surfaces;\n- Wear appropriate footwear around the cabin, dock, and boats;\n- Wear a personal flotation device when required by law, requested by a vessel operator, or appropriate for conditions;\n- Stay clear of boat propellers and engines;\n- Not enter restricted electrical, mechanical, generator, or equipment areas unless authorized;\n- Not modify, repair, disconnect, bypass, or otherwise alter electrical or mechanical equipment;\n- Not operate equipment or appliances that I do not understand how to operate safely;\n- Immediately report any apparent electrical problem, damaged equipment, unsafe condition, or other hazard to a member of Baffin Bay PC1409;\n- Use reasonable caution around grills, cooking equipment, generators, fuel, batteries, and other equipment;\n- Follow reasonable safety instructions given by members or persons responsible for boats, equipment, or the property; and\n- Refrain from reckless or dangerous behavior.\n\n6. BOAT OPERATOR’S AUTHORITY\n\nWhenever I am aboard a boat traveling to, from, or in connection with the camp, I understand that the person operating or captaining that vessel is in charge of the vessel and has final authority concerning its safe operation.\n\nI agree to promptly follow the boat operator’s instructions concerning boarding, exiting, seating, movement aboard the vessel, personal flotation devices, weather conditions, navigation, emergency procedures, and other safety matters.\n\nI understand that boarding and exiting a boat at a dock can be particularly hazardous because the boat and dock may move independently and unexpectedly.\n\n7. ALCOHOL AND IMPAIRMENT\n\nI understand that consuming alcohol can substantially increase the risks associated with docks, boats, water, stairs, cooking equipment, electrical equipment, and other activities at the camp.\n\nI accept responsibility for my own consumption and conduct and agree not to operate boats, electrical equipment, generators, vehicles, or other potentially hazardous equipment while impaired.\n\n8. MEDICAL EMERGENCIES AND REMOTE LOCATION\n\nI understand that the cabin/camp may be located some distance from hospitals, emergency medical services, law enforcement, fire departments, or other emergency services.\n\nEmergency response and transportation may therefore take longer than they would in an urban location.\n\nIf I become injured or ill and am unable to make decisions for myself, I authorize reasonable emergency medical assistance to be requested on my behalf.\n\nI understand that I am responsible for medical expenses incurred on my behalf except as otherwise required by applicable law.\n\n9. PERSONAL PROPERTY\n\nI understand that Baffin Bay PC1409 is not responsible for safeguarding my personal belongings.\n\nTo the extent permitted by law, I accept the risk of loss or damage to personal property resulting from water, weather, theft, fire, equipment failure, boating activities, or other conditions associated with the camp.\n\n10. APPLICABLE LAW AND SEVERABILITY\n\nThis agreement is intended to be interpreted and enforced in accordance with applicable Texas law and, when applicable, federal maritime law.\n\nIf any provision of this agreement is determined to be invalid or unenforceable, the remaining provisions shall remain effective to the fullest extent permitted by law.\n\n11. GUEST ACKNOWLEDGMENT\n\nI ACKNOWLEDGE THAT I HAVE READ THIS AGREEMENT CAREFULLY AND UNDERSTAND IT.\n\nI UNDERSTAND THAT VISITING AND USING THE BAFFIN BAY PC1409 CABIN, DOCKS, BOATS, EQUIPMENT, APPLIANCES, AND RELATED FACILITIES INVOLVES RISKS THAT INCLUDE SERIOUS INJURY, DROWNING, ELECTROCUTION, PERMANENT DISABILITY, AND DEATH.\n\nI UNDERSTAND THAT THIS AGREEMENT CONTAINS AN ASSUMPTION OF RISK AND A RELEASE AND WAIVER OF CERTAIN LEGAL RIGHTS, INCLUDING CERTAIN CLAIMS ARISING FROM ORDINARY NEGLIGENCE.\n\nI voluntarily agree to these terms as a condition of entering and using the property and facilities associated with Baffin Bay PC1409, LLC.",
+  guardianText: "I am the parent or legal guardian of the minor identified above. I authorize the minor to visit and participate in activities at Baffin Bay PC1409.\n\nI acknowledge the risks described in this agreement and agree to instruct the minor to follow applicable safety rules and directions.\n\nI understand that the legal effectiveness of releases and waivers involving minors may be limited by applicable law.",
+  calendarUrl: "",
+  calendarNote: "Check the calendar before planning a trip, and add your dates once they're set."
+};
+
+const GUEST_PAGES = [
+  ["welcome", "Welcome"], ["waiver", "Sign Waiver"], ["amenities", "Amenities"], ["bring", "What To Bring"], ["location", "Getting There"]
+];
+const MEMBER_PAGES = [
+  ["photos", "Grip’n’Grins"], ["guestbook", "Fishing Reports"], ["records", "Fishing Records"], ["calendar", "Calendar"], ["todo", "Cabin To-Dos"], ["conditions", "Tides & Moon"], ["checklists", "Arrival & Departure"], ["groceries", "Grocery List"], ["contacts", "Contacts"], ["waivers", "Signed Waivers"]
+];
+
+/* ---------- state ---------- */
+const S = {
+  site: { ...DEFAULT_SITE },
+  waivers: [], contacts: [], contactEdit: null, posts: [], groceries: [], todos: [], photos: [], lightbox: -1,
+  db: null, canWrite: null, downloads: null,
+  unlocked: false, editing: null,
+  postKind: "update", todoKind: "buy", photoEdit: false, gList: "members", interior: [], amLb: -1, slide: 0, showPaused: false, importOpen: false, importPreview: null,
+  catchPhotos: [], catchPick: [], catchLb: null, groceryLists: [], gOpen: null, records: [], recYear: null, recPick: null, recLb: null
+};
+const store = {
+  get(k) { try { return localStorage.getItem("baffin:" + k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem("baffin:" + k, v); } catch {} }
+};
+S.unlocked = false; // set by Firebase sign-in state at boot
+S.signed = store.get("signed") === "1";
+
+/* ---------- helpers ---------- */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmtDate = ms => ms ? new Date(ms).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "";
+const fmtDT = ms => ms ? new Date(ms).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "";
+let toastTimer;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => t.hidden = true, 2600); }
+function myName() { return store.get("name") || ""; }
+function rememberName(n) { if (n) store.set("name", n.trim()); }
+function errMsg(e) {
+  if (!e) return "Something went wrong. Try again.";
+  if (e.code === "permission-denied" || e.code === "invalid_argument") return "You don't have permission to save here. Ask the cabin owner to give you edit access.";
+  if (e.code === "quota_exceeded") return "Storage is full. Delete some old entries and try again.";
+  return "Couldn't save right now. Check your connection and try again.";
+}
+function needDb() {
+  if (!S.db) { toast("Couldn't reach the cabin database. Check your connection and try again."); return false; }
+  if (S.canWrite === false) { toast("You can view this page, but saving needs edit access from the cabin owner."); return false; }
+  return true;
+}
+
+/* ---------- routing ---------- */
+function currentRoute() {
+  const h = (location.hash || "").slice(1);
+  const all = [...GUEST_PAGES, ...MEMBER_PAGES].map(p => p[0]);
+  return all.includes(h) ? h : "welcome";
+}
+function isMemberRoute(r) { return MEMBER_PAGES.some(p => p[0] === r); }
+function go(r) { if (location.hash.slice(1) !== r) location.hash = r; else render(); }
+window.addEventListener("hashchange", () => { S.editing = null; S.amLb = -1; S.photoEdit = false; S.contactEdit = null; render(); window.scrollTo(0, 0); });
+$("#side-toggle").onclick = () => go(isMemberRoute(currentRoute()) ? "welcome" : MEMBER_PAGES[0][0]);
+// members side menu sticks just under the header, whatever height the header wraps to
+new ResizeObserver(([e]) => document.documentElement.style.setProperty("--top-h", Math.round(e.target.getBoundingClientRect().height) + "px")).observe($("#top"));
+const onScroll = () => $("#top").classList.toggle("solid", window.scrollY > 40);
+window.addEventListener("scroll", onScroll, { passive: true });
+
+/* ---------- render ---------- */
+function render() {
+  const r = currentRoute();
+  const member = isMemberRoute(r);
+  $("#side-toggle").innerHTML = member ? "Guest pages" : `<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>Members`;
+  $("#tabs").innerHTML = GUEST_PAGES.map(([id, label]) => `<a href="#${id}" ${id === r ? 'aria-current="page"' : ""}>${id === "welcome" ? "Home" : label}</a>`).join("");
+  const home = r === "welcome" && S.editing !== "welcome";
+  $("#hero").hidden = !home;
+  document.body.classList.toggle("home", home);
+  onScroll();
+  $("#hero-text").textContent = S.site.welcome;
+  const main = $("#main");
+  if (member && !S.unlocked) { main.innerHTML = gateView(); bindGate(); return; }
+  const views = { welcome: welcomeView, waiver: waiverView, bring: bringView, amenities: amenitiesView, location: locationView,
+    guestbook: guestbookView, records: recordsView, checklists: checklistsView, conditions: conditionsView, photos: photosView, groceries: groceriesView, todo: todoView, calendar: calendarView, contacts: contactsView, waivers: waiversView };
+  // preserve in-progress form inputs across live re-renders
+  const keep = {};
+  main.querySelectorAll("input[id], textarea[id], select[id]").forEach(el => { if (el.type !== "checkbox" && el.type !== "file") keep[el.id] = el.value; });
+  const focusId = document.activeElement?.id;
+  main.innerHTML = member
+    ? `<div class="m-layout"><nav class="m-side" aria-label="Members pages"><p class="eyebrow">Members</p>${MEMBER_PAGES.map(([id, label]) => `<a href="#${id}" ${id === r ? 'aria-current="page"' : ""}>${label}</a>`).join("")}<button class="linkbtn" id="lock">Lock members area</button></nav><section class="panel">${views[r]()}</section></div>`
+    : `<section class="panel">${views[r]()}</section>`;
+  if (member) { const nav = $(".m-side"), cur = nav.querySelector("[aria-current]"); if (cur && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = cur.offsetLeft - (nav.clientWidth - cur.offsetWidth) / 2; }
+  if (member) $("#lock").onclick = () => { fbAuth.signOut(); go("welcome"); };
+  Object.entries(keep).forEach(([id, v]) => { const el = document.getElementById(id); if (el && el.dataset.fresh == null) el.value = v; });
+  if (focusId) document.getElementById(focusId)?.focus();
+  binders[r]?.();
+}
+const binders = {};
+
+/* ---------- editable guest-info block (members can edit when unlocked) ---------- */
+function editBtn(key) {
+  if (!S.unlocked) return "";
+  return `<button class="linkbtn" data-edit="${key}">Edit this page</button>`;
+}
+function listEditor(key, label) {
+  const v = Array.isArray(S.site[key]) ? S.site[key].join("\n") : S.site[key];
+  return `<div class="card edit-area">
+    <label for="ed-${key}">${label}<span class="hint">One item per line. End a line with a colon to make it a heading, like “Bedding:”.</span></label>
+    <textarea id="ed-${key}" data-fresh rows="9">${esc(v)}</textarea>
+    <div class="row"><button class="btn" data-save="${key}">Save</button><button class="btn ghost" data-cancel>Cancel</button></div>
+  </div>`;
+}
+function bindEditing() {
+  document.querySelectorAll("[data-edit]").forEach(b => b.onclick = () => { S.editing = b.dataset.edit; render(); });
+  document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = () => { S.editing = null; render(); });
+  document.querySelectorAll("[data-save]").forEach(b => b.onclick = async () => {
+    const key = b.dataset.save;
+    const patch = {};
+    if (key === "location") {
+      patch.address = $("#ed-address").value.trim();
+      patch.directions = $("#ed-directions").value.trim();
+      patch.mapUrl = $("#ed-mapUrl").value.trim();
+      patch.rampName = $("#ed-rampName").value.trim();
+      patch.rampUrl = $("#ed-rampUrl").value.trim();
+    } else if (key === "waiver") {
+      patch.waiverTitle = $("#ed-waiverTitle").value.trim() || DEFAULT_SITE.waiverTitle;
+      patch.waiverText = $("#ed-waiverText").value.trim();
+    } else if (key === "calendar") {
+      patch.calendarUrl = $("#ed-calendarUrl").value.trim();
+      patch.calendarNote = $("#ed-calendarNote").value.trim();
+    } else if (key === "guestlist") {
+      patch.guestListUrl = $("#ed-guestListUrl").value.trim();
+    } else if (key === "welcome") {
+      patch.welcome = $("#ed-welcome").value.trim();
+    } else {
+      patch[key] = $("#ed-" + key).value.split("\n").map(s => s.trim()).filter(Boolean);
+    }
+    await saveSite(patch);
+  });
+}
+async function saveSite(patch) {
+  if (!needDb()) return;
+  const next = { ...S.site, ...patch, updatedAt: Date.now() };
+  try { await S.db.doc("config/site").set(next); S.site = next; S.editing = null; render(); toast("Saved"); }
+  catch (e) { toast(errMsg(e)); }
+}
+
+/* ---------- guest views ---------- */
+function welcomeView() {
+  if (S.editing === "welcome") return `<h2>Welcome</h2><div class="card edit-area">
+    <label for="ed-welcome">Welcome message</label><textarea id="ed-welcome" data-fresh rows="5">${esc(S.site.welcome)}</textarea>
+    <div class="row"><button class="btn" data-save="welcome">Save</button><button class="btn ghost" data-cancel>Cancel</button></div></div>`;
+  const am = (S.site.amenities || []).slice(0, 8);
+  return `
+    <div class="row" style="align-items:end"><div class="sec-head"><p class="eyebrow">Plan your stay</p><h2>Three things before you head down</h2></div><span class="spacer"></span>${S.unlocked ? `<div class="home-tools">${editBtn("welcome")}</div>` : ""}</div>
+    <ol class="steps">
+      <li><a href="#waiver"><span class="step-n">1</span><h3>Sign the guest waiver</h3><p class="meta">Every adult guest signs before their visit. It takes a few minutes on your phone.</p><span class="go">Sign now</span></a></li>
+      <li><a href="#bring"><span class="step-n">2</span><h3>Pack what you need</h3><p class="meta">${listCount(S.site.bring)} things to bring, from bedding to your fishing license.</p><span class="go">See the list</span></a></li>
+      <li><a href="#location"><span class="step-n">3</span><h3>Find your way</h3><p class="meta">Address, directions and where to park when you arrive.</p><span class="go">Get directions</span></a></li>
+    </ol>
+    <section class="band" aria-label="Amenities">
+      <div class="band-in">
+        <div class="sec-head"><p class="eyebrow">At the cabin</p><h2>Waiting for you on the bay</h2><p class="lede">Bring the groceries and the gear. Here's what's already there.</p><a href="#amenities" class="btn ghost small" style="justify-self:start;margin-top:8px">All amenities</a></div>
+        ${am.length ? `<ul class="amen">${am.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : `<p class="meta">Amenities coming soon.</p>`}
+      </div>
+    </section>`;
+}
+binders.welcome = bindEditing;
+
+function listPage(key, eyebrow, title, intro, before = "") {
+  if (S.editing === key) return `<h2>${title}</h2>${listEditor(key, title)}`;
+  const items = S.site[key] || [];
+  return `<div><p class="eyebrow">${eyebrow}</p><h2>${title}</h2></div>
+    <p class="lede">${intro}</p>
+    ${before}
+    <div class="card">${items.length ? listGroups(items) : `<p class="meta">Nothing listed yet.</p>`}</div>
+    ${editBtn(key)}`;
+}
+// a line ending in ":" is a heading; the lines under it form its group
+const isHeading = i => /:\s*$/.test(i);
+const listCount = items => items.filter(i => !isHeading(i)).length;
+function listGroups(items) {
+  const groups = [];
+  items.forEach(i => { if (isHeading(i)) groups.push({ h: i.replace(/:\s*$/, ""), items: [] }); else { if (!groups.length) groups.push({ h: "", items: [] }); groups.at(-1).items.push(i); } });
+  if (groups.length === 1 && !groups[0].h) return `<ul class="list-plain">${groups[0].items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+  return `<div class="list-groups">${groups.map(g => `<section>${g.h ? `<h3>${esc(g.h)}</h3>` : ""}<ul class="list-plain">${g.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul></section>`).join("")}</div>`;
+}
+function bringView() { return listPage("bring", "Packing list", "What To Bring", "The cabin is stocked with basics. Plan on bringing these yourself."); }
+function amenitiesView() { return listPage("amenities", "At the cabin", "Amenities", "Here's what you'll find when you get there.", S.editing ? "" : amenityGallery()); }
+binders.bring = bindEditing;
+
+/* amenities photos: one large cabin shot, then a scrolling strip of interior photos (db `interior`) */
+// the drone video plays large at the top; every photo goes in the scrolling Cabin Photos strip
+const CABIN_VIDEO = { src: "cabin-video.mp4", poster: "cabin-video-poster.jpg", caption: "The Baffin Cabin from the air" };
+const CABIN_FEATURES = [
+  { id: "hero", image: "cabin.jpg", caption: "The Baffin Cabin", pos: "50% 50%" },
+  { id: "patio", image: "patio-sunset.jpg", caption: "Sunset from the patio", pos: "50% 64%" }
+];
+function amenityShots() { return [...CABIN_FEATURES, ...S.interior]; }
+function amenityGallery() {
+  const ins = S.interior, shots = amenityShots();
+  return `<section class="am-gallery" aria-label="Cabin photos">
+    <div class="am-hero"><video src="${CABIN_VIDEO.src}" poster="${CABIN_VIDEO.poster}" autoplay muted loop playsinline preload="auto" aria-label="${esc(CABIN_VIDEO.caption)}"></video></div>
+    <p class="eyebrow" style="margin:8px 0 0">Cabin Photos</p>
+    <div class="am-strip" role="list">${shots.map((p, i) => `<button class="am-thumb" role="listitem" data-am="${i}" aria-label="Enlarge${p.caption ? ": " + esc(p.caption) : " cabin photo"}"><img src="${esc(p.thumb || p.image)}" alt="${esc(p.caption || "Cabin photo")}" style="object-position:${p.pos || "50% 50%"}" loading="lazy"></button>`).join("")}</div>
+    ${S.unlocked ? `<div class="row"><label class="btn ghost small" for="am-file" style="display:inline-flex;cursor:pointer">Add Cabin Photos</label><input type="file" id="am-file" accept="image/*" multiple hidden><span class="meta" id="am-status" role="status">${ins.length ? "" : "No cabin photos yet."}</span></div>` : ""}
+    ${S.amLb >= 0 && shots[S.amLb] ? amLightbox(shots, S.amLb) : ""}
+  </section>`;
+}
+function amLightbox(shots, i) {
+  const p = shots[i], n = shots.length;
+  return `<div class="lb" id="am-lb" role="dialog" aria-modal="true" aria-label="Photo">
+    <div class="lb-bar"><span class="count">${i + 1} / ${n}</span><span class="spacer"></span><button class="lb-btn" id="am-close">Close</button></div>
+    <div class="lb-stage">${n > 1 ? `<button class="lb-nav" id="am-prev" aria-label="Previous photo">‹</button>` : ""}<img src="${esc(p.image)}" alt="${esc(p.caption || "Cabin photo")}">${n > 1 ? `<button class="lb-nav" id="am-next" aria-label="Next photo">›</button>` : ""}</div>
+    <div class="lb-foot"><div class="row"><span class="meta">${esc(p.caption || "")}</span><span class="spacer"></span>${S.unlocked && !CABIN_FEATURES.includes(p) ? `<button class="linkbtn" data-del-interior="${esc(p.id)}">Delete</button>` : ""}</div></div></div>`;
+}
+binders.amenities = () => {
+  bindEditing();
+  document.querySelectorAll("[data-am]").forEach(b => b.onclick = () => { S.amLb = +b.dataset.am; render(); });
+  const f = $("#am-file");
+  if (f) f.onchange = async e => {
+    const files = [...e.target.files]; e.target.value = "";
+    if (!files.length || !needDb()) return;
+    const st = $("#am-status"); let done = 0;
+    for (const file of files) {
+      st.textContent = `Adding photo ${done + 1} of ${files.length}…`;
+      try {
+        const im = await loadImage(file);
+        const big = shrink(im, 1400, 0.78, 168000), th = shrink(im, 480, 0.68, 40000);
+        await S.db.collection("interior").add({ image: big.url, thumb: th.url, caption: "", by: myName(), createdAt: Date.now() });
+        done++;
+      } catch (ex) { st.textContent = ex?.code ? errMsg(ex) : `Couldn't read ${file.name}. Try a JPEG or PNG.`; return; }
+    }
+    st.textContent = ""; toast(done === 1 ? "Photo added" : `${done} photos added`);
+  };
+  const lb = $("#am-lb"); if (!lb) return;
+  const n = amenityShots().length;
+  const close = () => { S.amLb = -1; document.removeEventListener("keydown", window.__amKey); render(); };
+  const step = d => { S.amLb = (S.amLb + d + n) % n; render(); };
+  document.removeEventListener("keydown", window.__amKey || (() => {}));
+  window.__amKey = e => { if (e.key === "Escape") close(); if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); };
+  document.addEventListener("keydown", window.__amKey);
+  $("#am-close").onclick = close;
+  lb.onclick = e => { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); };
+  $("#am-prev") && ($("#am-prev").onclick = () => step(-1));
+  $("#am-next") && ($("#am-next").onclick = () => step(1));
+  document.querySelectorAll("[data-del-interior]").forEach(b => b.onclick = () => {
+    if (b.dataset.armed) S.amLb = -1;
+    confirmDelete(b, "interior", b.dataset.delInterior);
+  });
+};
+
+function locationView() {
+  const s = S.site;
+  if (S.editing === "location") return `<h2>Getting There</h2><div class="card edit-area">
+    <label for="ed-address">Address</label><input type="text" id="ed-address" data-fresh value="${esc(s.address)}">
+    <label for="ed-directions">Directions and parking</label><textarea id="ed-directions" data-fresh rows="7">${esc(s.directions)}</textarea>
+    <label for="ed-mapUrl">Map link<span class="hint">Paste a Google Maps or Apple Maps share link.</span></label><input type="url" id="ed-mapUrl" data-fresh value="${esc(s.mapUrl)}" placeholder="https://maps.app.goo.gl/…">
+    <label for="ed-rampName">Boat ramp name</label><input type="text" id="ed-rampName" data-fresh value="${esc(s.rampName || "")}">
+    <label for="ed-rampUrl">Boat ramp map link</label><input type="url" id="ed-rampUrl" data-fresh value="${esc(s.rampUrl || "")}" placeholder="https://maps.app.goo.gl/…">
+    <div class="row"><button class="btn" data-save="location">Save</button><button class="btn ghost" data-cancel>Cancel</button></div></div>`;
+  return `<div><p class="eyebrow">Directions</p><h2>Getting There</h2></div>
+    <div class="grid2">
+      <div class="card" style="display:grid;gap:8px"><span class="eyebrow">Address</span><p style="font-family:var(--f-display);font-size:1.2rem">${esc(s.address)}</p>
+        ${s.mapUrl ? `<div class="map-place"><strong>${esc(s.locationName || "Baffin Cabin")}</strong><a href="${esc(s.mapUrl)}" target="_blank" rel="noopener">Open in maps</a></div>` : ""}
+        ${s.rampUrl ? `<div class="map-place"><strong>${esc(s.rampName || "Boat ramp")}</strong><a href="${esc(s.rampUrl)}" target="_blank" rel="noopener">Open in maps</a></div>` : ""}</div>
+      <div class="card" style="display:grid;gap:8px"><span class="eyebrow">Directions and parking</span><p style="white-space:pre-wrap">${esc(s.directions)}</p></div>
+    </div>
+    ${editBtn("location")}`;
+}
+binders.location = bindEditing;
+
+function waiverView() {
+  const s = S.site;
+  if (S.editing === "waiver") return `<h2>Edit waiver</h2><div class="card edit-area">
+    <label for="ed-waiverTitle">Title</label><input type="text" id="ed-waiverTitle" data-fresh value="${esc(s.waiverTitle)}">
+    <label for="ed-waiverText">Waiver text<span class="hint">Waivers already signed keep the text they were signed under. Start a line with "- " for a bullet.</span></label>
+    <textarea id="ed-waiverText" data-fresh rows="16">${esc(s.waiverText)}</textarea>
+    <div class="row"><button class="btn" data-save="waiver">Save</button><button class="btn ghost" data-cancel>Cancel</button></div></div>`;
+  const blocked = S.canWrite === false;
+  return `<div style="display:grid;gap:6px"><p class="eyebrow">${esc(s.waiverOrg)} · Baffin Bay, Texas</p><h2>${esc(s.waiverTitle)}</h2></div>
+    <p class="lede">Every adult guest signs their own waiver. Read the agreement, fill in your details, and sign with your finger or mouse.</p>
+    ${blocked ? `<p class="notice">This link lets you read the waiver but not sign it. Ask the member who invited you for a signing link.</p>` : ""}
+    <div class="waiver-text" tabindex="0" aria-label="Waiver agreement">${formatWaiver(s.waiverText)}</div>
+    ${editBtn("waiver")}
+    <form class="card" id="waiver-form" style="display:grid;gap:18px" novalidate>
+      <p class="eyebrow">Guest information</p>
+      <div class="fields">
+        <label for="w-name">Guest name<input type="text" id="w-name" autocomplete="name" required></label>
+        <label for="w-visit">Date(s) of visit<input type="text" id="w-visit" placeholder="e.g. Oct 17 to 19, 2026"></label>
+        <label for="w-member">Inviting member<input type="text" id="w-member"></label>
+      </div>
+      <div class="fields">
+        <label for="w-address">Address<input type="text" id="w-address" autocomplete="street-address"></label>
+        <label for="w-city">City / State / ZIP<input type="text" id="w-city" autocomplete="address-level2"></label>
+      </div>
+      <div class="fields">
+        <label for="w-phone">Phone<input type="tel" id="w-phone" autocomplete="tel"></label>
+        <label for="w-email">Email<input type="email" id="w-email" autocomplete="email"></label>
+      </div>
+      <div class="fields">
+        <label for="w-emergency">Emergency contact<input type="text" id="w-emergency"></label>
+        <label for="w-emergency-phone">Emergency contact phone<input type="tel" id="w-emergency-phone"></label>
+      </div>
+      <div style="display:grid;gap:6px">
+        <span style="font-weight:500;font-size:.9rem">Guest signature</span>
+        <div class="sig-wrap"><canvas id="sig" aria-label="Signature pad"></canvas><span class="x">×</span><span class="base"></span></div>
+        <div class="row"><button type="button" class="linkbtn" id="sig-clear">Clear signature</button></div>
+      </div>
+      <label class="check"><input type="checkbox" id="w-agree"> <span>I have read this agreement carefully and understand it. I understand it contains an assumption of risk and a release and waiver of certain legal rights, and I voluntarily agree to its terms.</span></label>
+      <details id="w-minor-box" style="display:grid;gap:12px">
+        <summary style="cursor:pointer;font-weight:600">Bringing a minor? Add the parent/guardian acknowledgment</summary>
+        <div style="display:grid;gap:12px;margin-top:12px">
+          <p class="meta" style="white-space:pre-wrap">${esc(s.guardianText)}</p>
+          <div class="fields">
+            <label for="w-minors">Minor's name(s) and age(s)<input type="text" id="w-minors" placeholder="e.g. Sam (9), Lily (12)"></label>
+            <label for="w-guardian-phone">Parent/guardian emergency phone<input type="tel" id="w-guardian-phone"></label>
+          </div>
+          <label class="check"><input type="checkbox" id="w-guardian"> <span>I am the parent or legal guardian of the minor(s) listed above and agree to the parent/guardian acknowledgment. My signature above also serves as the parent/guardian signature.</span></label>
+        </div>
+      </details>
+      <p class="meta" id="w-error" role="alert"></p>
+      <div class="row"><button class="btn" type="submit" id="w-submit" ${blocked ? "disabled" : ""}>Sign waiver</button><span class="meta">Today's date is recorded when you sign.</span></div>
+    </form>`;
+}
+/* light formatting for the waiver text: numbered sections, all-caps subheads, "- " bullets */
+function formatWaiver(text) {
+  const out = []; let list = null;
+  for (const raw of String(text || "").split("\n")) {
+    const line = raw.trim();
+    if (line.startsWith("- ")) { (list ||= []).push(`<li>${esc(line.slice(2))}</li>`); continue; }
+    if (list) { out.push(`<ul>${list.join("")}</ul>`); list = null; }
+    if (!line) continue;
+    const letters = line.replace(/[^A-Za-z]/g, "");
+    if (/^\d+\.\s/.test(line) && letters === letters.toUpperCase()) out.push(`<h4 class="w-sec">${esc(line)}</h4>`);
+    else if (letters && letters === letters.toUpperCase() && line.length < 60) out.push(`<h5 class="w-sub">${esc(line)}</h5>`);
+    else if (letters && letters === letters.toUpperCase()) out.push(`<p><strong>${esc(line)}</strong></p>`);
+    else out.push(`<p>${esc(line)}</p>`);
+  }
+  if (list) out.push(`<ul>${list.join("")}</ul>`);
+  return out.join("");
+}
+let sigDirty = false;
+binders.waiver = () => {
+  bindEditing();
+  const c = $("#sig"); if (!c) return;
+  sigDirty = false;
+  const ctx = c.getContext("2d");
+  const size = () => { const r = c.getBoundingClientRect(); const d = window.devicePixelRatio || 1; c.width = r.width * d; c.height = r.height * d; ctx.scale(d, d); ctx.lineWidth = 2.2; ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = "#1a2a40"; };
+  size();
+  let drawing = false;
+  const pos = e => { const r = c.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  c.onpointerdown = e => { drawing = true; c.setPointerCapture(e.pointerId); const [x, y] = pos(e); ctx.beginPath(); ctx.moveTo(x, y); };
+  c.onpointermove = e => { if (!drawing) return; const [x, y] = pos(e); ctx.lineTo(x, y); ctx.stroke(); sigDirty = true; };
+  c.onpointerup = c.onpointercancel = () => drawing = false;
+  $("#sig-clear").onclick = () => { ctx.clearRect(0, 0, c.width, c.height); sigDirty = false; };
+  $("#waiver-form").onsubmit = async e => {
+    e.preventDefault();
+    const err = $("#w-error");
+    const name = $("#w-name").value.trim();
+    if (!name) { err.textContent = "Enter your full legal name."; $("#w-name").focus(); return; }
+    if (!sigDirty) { err.textContent = "Sign in the signature box above."; return; }
+    if (!$("#w-agree").checked) { err.textContent = "Check the box to confirm you agree."; return; }
+    err.textContent = "";
+    if (!needDb()) return;
+    // flatten signature onto white so it reads in either theme
+    const out = document.createElement("canvas"); out.width = 480; out.height = 150;
+    const o = out.getContext("2d"); o.fillStyle = "#fff"; o.fillRect(0, 0, 480, 150); o.drawImage(c, 0, 0, 480, 150);
+    const minors = $("#w-minors").value.trim();
+    if (minors && !$("#w-guardian").checked) { err.textContent = "Check the parent/guardian box for the minors you listed."; $("#w-minor-box").open = true; return; }
+    const v = id => $("#" + id).value.trim();
+    const rec = {
+      name, visitDate: v("w-visit"), invitingMember: v("w-member"),
+      address: v("w-address"), cityStateZip: v("w-city"), phone: v("w-phone"), email: v("w-email"),
+      emergency: v("w-emergency"), emergencyPhone: v("w-emergency-phone"),
+      minors, guardianAck: !!minors, guardianPhone: minors ? v("w-guardian-phone") : "",
+      signature: out.toDataURL("image/png"), agreed: true, signedAt: Date.now(),
+      waiverTitle: S.site.waiverTitle, waiverText: S.site.waiverText, guardianText: minors ? S.site.guardianText : ""
+    };
+    $("#w-submit").disabled = true;
+    try {
+      await S.db.collection("waivers").add(rec);
+      S.signed = true; store.set("signed", "1"); if (!myName()) rememberName(name);
+      $("#main").innerHTML = `<section class="panel"><div class="card" style="display:grid;gap:10px;max-width:560px">
+        <p class="eyebrow">Signed ${esc(fmtDT(rec.signedAt))}</p><h2>Thanks, ${esc(name.split(" ")[0])}.</h2>
+        <p>Your waiver is on file. See you at the cabin.</p>
+        <div class="row"><a class="btn" href="#bring" style="text-decoration:none">See what to bring</a>
+        <button class="btn ghost" id="another">Sign for another adult</button></div></div></section>`;
+      $("#another").onclick = () => render();
+    } catch (ex) { $("#w-submit").disabled = false; err.textContent = errMsg(ex); }
+  };
+};
+
+/* ---------- members gate ---------- */
+function gateView() {
+  return `<div class="gate card">
+    <p class="eyebrow">Members only</p><h2>Members area</h2>
+    <p class="meta">Fishing reports, Grip’n’Grins, the grocery list, cabin to-dos, calendar and signed waivers are for cabin members.</p>
+    <form id="gate-form" style="display:grid;gap:10px">
+      <label for="gate-code">Member passcode<input type="password" id="gate-code" autocomplete="current-password"></label>
+      <p class="meta" id="gate-err" role="alert"></p>
+      <button class="btn" type="submit">Open members area</button>
+    </form></div>`;
+}
+function bindGate() {
+  $("#gate-form").onsubmit = e => {
+    e.preventDefault();
+    const btn = e.target.querySelector("button"); btn.disabled = true; $("#gate-err").textContent = "";
+    fbAuth.signInWithEmailAndPassword(MEMBER_EMAIL, $("#gate-code").value.trim().toLowerCase())
+      .catch(() => { btn.disabled = false; $("#gate-err").textContent = "That passcode didn't match. Ask another member for it."; });
+  };
+}
+
+/* ---------- arrival & departure checklists (items in config/site; ticks live on this device only) ---------- */
+const CK = [["arrival", "Arrival"], ["departure", "Departure"]];
+function ckTicks(k) { try { return JSON.parse(store.get("ck-" + k) || "[]"); } catch { return []; } }
+function checklistsView() {
+  const ed = CK.find(([k]) => S.editing === k);
+  if (ed) return `<h2>${ed[1]} checklist</h2>${listEditor(ed[0], ed[1] + " checklist")}`;
+  return `<div><p class="eyebrow">Members</p><h2>Arrival & Departure</h2></div>
+    <p class="lede">Run through these when you open up camp and before you head home. Checkmarks are saved on your phone only, so each group starts fresh.</p>
+    <div class="ck-grid">${CK.map(([k, label]) => {
+      const items = S.site[k] || [], ticks = ckTicks(k), n = items.filter(i => ticks.includes(i)).length;
+      return `<section class="card" style="display:grid;gap:12px">
+        <div class="row"><h3 style="margin:0">${label}</h3><span class="spacer"></span><span class="count">${n} of ${items.length}</span></div>
+        <div class="ck-bar" aria-hidden="true"><span style="width:${items.length ? Math.round(n / items.length * 100) : 0}%"></span></div>
+        <ul class="items">${items.map((i, x) => `<li class="${ticks.includes(i) ? "done" : ""}"><input type="checkbox" id="ck-${k}-${x}" data-ck="${k}" data-ck-i="${x}" ${ticks.includes(i) ? "checked" : ""}><label class="txt" for="ck-${k}-${x}">${esc(i)}</label></li>`).join("")}</ul>
+        <div class="row"><button class="linkbtn" data-ck-reset="${k}">Start over</button><span class="spacer"></span>${S.unlocked ? `<button class="linkbtn" data-edit="${k}">Edit list</button>` : ""}</div>
+      </section>`; }).join("")}</div>`;
+}
+binders.checklists = () => {
+  bindEditing();
+  document.querySelectorAll("[data-ck]").forEach(cb => cb.onchange = () => {
+    const k = cb.dataset.ck, item = (S.site[k] || [])[+cb.dataset.ckI];
+    const t = ckTicks(k).filter(x => x !== item && (S.site[k] || []).includes(x));
+    if (cb.checked) t.push(item);
+    store.set("ck-" + k, JSON.stringify(t)); render();
+  });
+  document.querySelectorAll("[data-ck-reset]").forEach(b => b.onclick = () => { store.set("ck-" + b.dataset.ckReset, "[]"); render(); });
+};
+
+/* ---------- fishing records: biggest fish per species, by year (db `records`) ---------- */
+const REC_SPECIES = ["Speckled Trout", "Redfish", "Black Drum", "Flounder", "Sheepshead", "Other"];
+const recYear = r => (r.date || "").slice(0, 4);
+const inches = v => { const n = parseFloat(String(v).replace(/[^0-9.]/g, "")); return isNaN(n) ? 0 : n; };
+// speckled trout rank by weight; every other species by length
+const byWeight = sp => sp === "Speckled Trout";
+const recRank = sp => byWeight(sp) ? (a, b) => inches(b.weight) - inches(a.weight) || inches(b.length) - inches(a.length)
+  : (a, b) => inches(b.length) - inches(a.length) || inches(b.weight) - inches(a.weight);
+const lbs = r => r.weight ? `${inches(r.weight)} lbs` : "no weight";
+const ins = r => `${inches(r.length)}″`;
+function recordsView() {
+  const years = [...new Set(S.records.map(recYear).filter(Boolean))].sort().reverse();
+  const thisYear = String(new Date().getFullYear());
+  if (!years.includes(thisYear)) years.unshift(thisYear);
+  if (!S.recYear || (S.recYear !== "all" && !years.includes(S.recYear))) S.recYear = thisYear;
+  const pool = S.records.filter(r => S.recYear === "all" || recYear(r) === S.recYear);
+  const bySp = REC_SPECIES.map(sp => ({ sp, rows: pool.filter(r => (REC_SPECIES.includes(r.species) ? r.species : "Other") === sp).sort(recRank(sp)) })).filter(g => g.rows.length);
+  const today = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  const lb = S.recLb && S.records.find(r => r.id === S.recLb);
+  return `<div><p class="eyebrow">Members</p><h2>Fishing Records</h2></div>
+    <p class="lede">The Annual Record List. Log a big fish and it's ranked against everything caught that year. Speckled trout are ranked by weight, everything else by length.</p>
+    <form class="card" id="rec-form" style="display:grid;gap:14px">
+      <h3 style="margin:0">Log a Fish</h3>
+      <div class="fields">
+        <label for="r-angler">Angler<input type="text" id="r-angler" value="${esc(myName())}"></label>
+        <label for="r-species">Species<select id="r-species">${REC_SPECIES.map(sp => `<option>${sp}</option>`).join("")}</select></label>
+        <label for="r-date">Date caught<input type="date" id="r-date" value="${today}"></label>
+      </div>
+      <div class="fields">
+        <label for="r-length">Length (inches)<input type="text" id="r-length" inputmode="decimal" placeholder="27.5"></label>
+        <label for="r-weight">Weight (lbs)<span class="hint">Needed for trout</span><input type="text" id="r-weight" inputmode="decimal" placeholder="7.2"></label>
+        <label for="r-where">Where<span class="hint">Optional</span><input type="text" id="r-where" placeholder="Spot name"></label>
+      </div>
+      <label for="r-notes">Notes<span class="hint">Optional. Bait, released or kept, anything worth remembering.</span><input type="text" id="r-notes"></label>
+      <div class="row"><label class="btn ghost small" for="r-photo" style="display:inline-flex;cursor:pointer">${S.recPick ? "Change photo" : "Add a photo"}</label><input type="file" id="r-photo" accept="image/*" hidden><span class="meta">${S.recPick ? esc(S.recPick.name) : ""}</span><span class="spacer"></span><button class="btn" type="submit">Add to Records</button></div>
+    </form>
+    <div class="rec-years" role="group" aria-label="Year">${years.map(y => `<button type="button" data-ry="${y}" aria-pressed="${S.recYear === y}">${y}</button>`).join("")}<button type="button" data-ry="all" aria-pressed="${S.recYear === "all"}">All-Time</button></div>
+    ${bySp.length ? `<div class="rec-grid">${bySp.map(({ sp, rows }) => { const top = rows[0]; return `<section class="card" style="display:grid;gap:4px">
+        <h3 style="margin:0">${esc(sp)}</h3>
+        <div class="rec-lead">${top.thumb ? `<img src="${esc(top.thumb)}" alt="${esc(top.angler)}'s ${esc(sp)}" data-rec-lb="${esc(top.id)}">` : ""}<div><div class="rec-big">${byWeight(sp) ? `${esc(lbs(top))}<span class="meta" style="font-size:.9rem"> · ${esc(ins(top))}</span>` : `${esc(ins(top))}${top.weight ? `<span class="meta" style="font-size:.9rem"> · ${esc(lbs(top))}</span>` : ""}`}</div>
+          <div><b>${esc(top.angler || "A member")}</b> <span class="meta">${esc(fmtDate(new Date(top.date + "T12:00").getTime()))}${top.where ? " · " + esc(top.where) : ""}</span></div>${top.notes ? `<div class="meta">${esc(top.notes)}</div>` : ""}</div></div>
+        ${rows.length > 1 ? `<ol class="rec-rows">${rows.slice(1).map(r => `<li><span style="flex:1"><b>${esc(byWeight(sp) ? lbs(r) : ins(r))}</b> <span class="meta">${esc(byWeight(sp) ? ins(r) : r.weight ? lbs(r) : "")}</span> ${esc(r.angler || "")} <span class="meta">${esc(fmtDate(new Date(r.date + "T12:00").getTime()))}</span></span>${r.thumb ? `<button class="linkbtn" data-rec-lb="${esc(r.id)}">Photo</button>` : ""}<button class="linkbtn" data-del-rec="${esc(r.id)}">Delete</button></li>`).join("")}</ol>` : ""}
+        <div class="row"><span class="spacer"></span><button class="linkbtn" data-del-rec="${esc(top.id)}">Delete top entry</button></div>
+      </section>`; }).join("")}</div>`
+      : `<p class="empty">No fish logged for ${S.recYear === "all" ? "any year" : S.recYear} yet. Log the first one above.</p>`}
+    ${lb ? `<div class="lb" id="rec-lb" role="dialog" aria-modal="true" aria-label="Record photo"><div class="lb-bar"><span class="count">${esc(lb.angler || "")} · ${esc(byWeight(lb.species) ? lbs(lb) + " · " + ins(lb) : ins(lb))} ${esc(lb.species)}</span><span class="spacer"></span><button class="lb-btn" id="rec-close">Close</button></div><div class="lb-stage"><img src="${esc(lb.image || lb.thumb)}" alt="Record fish"></div><div class="lb-foot"></div></div>` : ""}`;
+}
+binders.records = () => {
+  document.querySelectorAll("[data-ry]").forEach(b => b.onclick = () => { S.recYear = b.dataset.ry; render(); });
+  document.querySelectorAll("[data-del-rec]").forEach(b => b.onclick = () => confirmDelete(b, "records", b.dataset.delRec));
+  document.querySelectorAll("[data-rec-lb]").forEach(b => b.onclick = () => { S.recLb = b.dataset.recLb; render(); });
+  const lb = $("#rec-lb");
+  if (lb) { const close = () => { S.recLb = null; render(); }; $("#rec-close").onclick = close; lb.onclick = e => { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); }; }
+  $("#r-photo").onchange = e => { S.recPick = e.target.files[0] || null; e.target.value = ""; render(); };
+  $("#rec-form").onsubmit = async e => {
+    e.preventDefault();
+    const angler = $("#r-angler").value.trim(), length = $("#r-length").value.trim(), date = $("#r-date").value;
+    if (!angler) { toast("Add the angler's name."); $("#r-angler").focus(); return; }
+    if (!inches(length)) { toast("Add the length in inches."); $("#r-length").focus(); return; }
+    if (byWeight($("#r-species").value) && !inches($("#r-weight").value)) { toast("Trout are ranked by weight, so add the weight in pounds."); $("#r-weight").focus(); return; }
+    if (!date) { $("#r-date").focus(); return; }
+    if (!needDb()) return;
+    const rec = { angler, species: $("#r-species").value, date, length: String(inches(length)), weight: $("#r-weight").value.trim() ? String(inches($("#r-weight").value)) : "",
+      where: $("#r-where").value.trim(), notes: $("#r-notes").value.trim(), by: myName(), createdAt: Date.now() };
+    try {
+      if (S.recPick) { const im = await loadImage(S.recPick); rec.image = shrink(im, 1200, 0.78, 150000).url; rec.thumb = shrink(im, 360, 0.7, 30000).url; }
+    } catch { toast("Couldn't read that photo, so the fish was logged without it."); }
+    try {
+      await S.db.collection("records").add(rec);
+      S.recPick = null; S.recYear = date.slice(0, 4);
+      ["r-length", "r-weight", "r-where", "r-notes"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
+      render(); toast("Added to the records");
+    } catch (ex) { toast(errMsg(ex)); }
+  };
+};
+
+/* ---------- guest book ---------- */
+function guestbookView() {
+  const fish = true;
+  const posts = S.posts.filter(p => p.kind !== "update");
+  return `<div><p class="eyebrow">Members</p><h2>Fishing Reports</h2></div>
+    <p class="lede">Catches, spots and conditions from every trip.</p>
+    <form class="card" id="post-form" style="display:grid;gap:14px">
+      <div class="fields">
+        <label for="p-name">Your name<input type="text" id="p-name" value="${esc(myName())}"></label>
+        ${fish ? `<label for="p-date">Date fished<input type="date" id="p-date"></label>` : ""}
+      </div>
+      ${fish ? `<div class="fields">
+        <label for="p-species">Species<input type="text" id="p-species" placeholder="Speckled trout, redfish…"></label>
+        <label for="p-count">Fish kept / caught<input type="text" id="p-count" placeholder="4 / 11"></label>
+        <label for="p-biggest">Biggest<input type="text" id="p-biggest" placeholder='26" red'></label>
+        <label for="p-bait">Bait / lure<input type="text" id="p-bait" placeholder="Live shrimp, popping cork"></label>
+      </div>
+      <p class="eyebrow" style="margin:4px 0 -4px">Conditions</p>
+      <div class="fields">
+        <label for="p-water">Water temp<input type="text" id="p-water" inputmode="decimal" placeholder="74°F"></label>
+        <label for="p-air">Daytime air temp<input type="text" id="p-air" placeholder="72–88°F"></label>
+        <label for="p-wind">Wind range<input type="text" id="p-wind" placeholder="SE 10–15 mph"></label>
+        <label for="p-moon">Moon phase<select id="p-moon">${MOON_PHASES.map(m => `<option${m === moonPhase(Date.now()) ? " selected" : ""}>${m}</option>`).join("")}</select></label>
+        <label for="p-tide">Tide<input type="text" id="p-tide" placeholder="Rising, high at 2pm"></label>
+      </div>
+      <p class="eyebrow" style="margin:4px 0 -4px">Where</p>
+      <div class="spots-form">${[1, 2, 3, 4, 5].map(n => `<div class="spot-row">
+        <label for="p-spot${n}">Spot ${n}<input type="text" id="p-spot${n}" placeholder="${n === 1 ? "Shoreline south of the dock" : "Spot name"}"></label>
+        <label for="p-spotn${n}">Spot ${n} notes<input type="text" id="p-spotn${n}" placeholder="${n === 1 ? "Reds tailing in the grass, 2 ft of water" : "What you saw, what worked"}"></label></div>`).join("")}</div>` : ""}
+      <label for="p-body">${fish ? "How it went" : "What's new"}<textarea id="p-body" placeholder="${fish ? "Started at first light…" : "Replaced the porch light, the AC filter is due next month…"}"></textarea></label>
+      <p class="eyebrow" style="margin:4px 0 -4px">Catch Photos</p>
+      <div class="cp-strip">${S.catchPick.map((c, i) => `<div class="cp-thumb" style="cursor:default"><img src="${c.url}" alt="Selected catch photo"><button type="button" class="cp-x" data-unpick="${i}" aria-label="Remove photo">✕</button></div>`).join("")}</div>
+      <div class="row"><label class="btn ghost small" for="p-photos" style="display:inline-flex;cursor:pointer">Add Photos of the Day’s Catch</label><input type="file" id="p-photos" accept="image/*" multiple hidden><span class="meta" id="p-photos-st" role="status">${S.catchPick.length ? `${S.catchPick.length} photo${S.catchPick.length > 1 ? "s" : ""} ready to post` : ""}</span></div>
+      <div class="row"><button class="btn" type="submit">Post</button></div>
+    </form>
+    <div style="display:grid;gap:12px">
+      ${posts.length ? posts.map(postCard).join("") : `<p class="empty">No fishing reports yet. Post the first one above.</p>`}
+    </div>
+    ${S.catchLb ? catchLightbox() : ""}`;
+}
+const MOON_PHASES = ["New moon", "Waxing crescent", "First quarter", "Waxing gibbous", "Full moon", "Waning gibbous", "Last quarter", "Waning crescent"];
+function moonPhase(t) {
+  const SYN = 29.530588853, age = (((t - Date.UTC(2000, 0, 6, 18, 14)) / 864e5) % SYN + SYN) % SYN;
+  return MOON_PHASES[Math.floor((age / SYN) * 8 + 0.5) % 8];
+}
+function postCard(p) {
+  const fish = p.kind === "fishing";
+  const f = p.fish || {};
+  const bits = [["Species", f.species], ["Kept/caught", f.count], ["Biggest", f.biggest], ["Where", f.spot], ["Bait", f.bait], ["Water", f.water], ["Air", f.air], ["Wind", f.wind], ["Moon", f.moon], ["Tide", f.tide], ["Conditions", f.conditions]].filter(x => x[1]);
+  return `<article class="card post">
+    <div class="post-head"><strong>${esc(p.author || "A member")}</strong>
+      <span class="tag ${fish ? "fish" : ""}">${fish ? "Fishing report" : "Update"}</span>
+      <span class="meta">${esc(fish && f.date ? fmtDate(new Date(f.date + "T12:00").getTime()) : fmtDT(p.createdAt))}</span>
+      <span class="spacer"></span><button class="linkbtn" data-del-post="${esc(p.id)}">Delete</button></div>
+    ${bits.length ? `<div class="catch">${bits.map(([k, v]) => `<span>${k} <b>${esc(v)}</b></span>`).join("")}</div>` : ""}
+    ${(f.spots || []).length ? `<ol class="spots">${f.spots.map((sp, i) => `<li><span class="meta">Spot ${sp.n || i + 1}</span> <b>${esc(sp.name || "Unnamed spot")}</b>${sp.notes ? `<span class="spot-notes">${esc(sp.notes)}</span>` : ""}</li>`).join("")}</ol>` : ""}
+    ${p.body ? `<p class="post-body">${esc(p.body)}</p>` : ""}
+    ${fish ? catchStrip(p) : ""}
+  </article>`;
+}
+// catch photos live in their own collection, linked to a report by its pid (falls back to the doc id for older reports)
+const postPid = p => p.pid || p.id;
+const catchFor = pid => S.catchPhotos.filter(c => c.pid === pid);
+function catchStrip(p) {
+  const pid = postPid(p), cs = catchFor(pid);
+  return `<div class="cp-strip">${cs.map((c, i) => `<button class="cp-thumb" data-cp="${esc(pid)}" data-cpi="${i}" aria-label="Enlarge catch photo"><img src="${esc(c.thumb || c.image)}" alt="Catch photo" loading="lazy"></button>`).join("")}
+    <label class="linkbtn" for="cpf-${esc(p.id)}" style="align-self:center;cursor:pointer">${cs.length ? "Add more photos" : "Add catch photos"}</label><input type="file" id="cpf-${esc(p.id)}" data-cp-add="${esc(pid)}" accept="image/*" multiple hidden></div>`;
+}
+function catchLightbox() {
+  const cs = catchFor(S.catchLb.pid), n = cs.length, c = cs[S.catchLb.i];
+  if (!c) return "";
+  return `<div class="lb" id="cp-lb" role="dialog" aria-modal="true" aria-label="Catch photo">
+    <div class="lb-bar"><span class="count">${S.catchLb.i + 1} / ${n}</span><span class="spacer"></span><button class="lb-btn" id="cp-close">Close</button></div>
+    <div class="lb-stage">${n > 1 ? `<button class="lb-nav" id="cp-prev" aria-label="Previous photo">‹</button>` : ""}<img src="${esc(c.image)}" alt="Catch photo">${n > 1 ? `<button class="lb-nav" id="cp-next" aria-label="Next photo">›</button>` : ""}</div>
+    <div class="lb-foot"><div class="row"><span class="meta">Added by ${esc(c.by || "a member")}</span><span class="spacer"></span><button class="linkbtn" id="cp-del">Delete</button></div></div></div>`;
+}
+async function addCatchPhotos(pid, files, st) {
+  let done = 0;
+  for (const f of files) {
+    if (st) st.textContent = `Adding photo ${done + 1} of ${files.length}…`;
+    const im = await loadImage(f);
+    const big = shrink(im, 1400, 0.78, 168000), th = shrink(im, 480, 0.68, 40000);
+    await S.db.collection("catchPhotos").add({ pid, image: big.url, thumb: th.url, by: myName(), createdAt: Date.now() });
+    done++;
+  }
+  return done;
+}
+binders.guestbook = () => {
+  document.querySelectorAll("[data-del-post]").forEach(b => b.onclick = () => {
+    const p = S.posts.find(x => x.id === b.dataset.delPost);
+    if (b.dataset.armed && p) catchFor(postPid(p)).forEach(c => S.db?.doc("catchPhotos/" + c.id).delete().catch(() => {}));
+    confirmDelete(b, "posts", b.dataset.delPost);
+  });
+  const pp = $("#p-photos");
+  if (pp) pp.onchange = e => { S.catchPick.push(...[...e.target.files].map(file => ({ file, url: URL.createObjectURL(file) }))); e.target.value = ""; render(); };
+  document.querySelectorAll("[data-unpick]").forEach(b => b.onclick = () => { const [c] = S.catchPick.splice(+b.dataset.unpick, 1); URL.revokeObjectURL(c.url); render(); });
+  document.querySelectorAll("[data-cp-add]").forEach(inp => inp.onchange = async e => {
+    const files = [...e.target.files]; e.target.value = "";
+    if (!files.length || !needDb()) return;
+    try { const n = await addCatchPhotos(inp.dataset.cpAdd, files); toast(n === 1 ? "Photo added" : `${n} photos added`); }
+    catch (ex) { toast(ex?.code ? errMsg(ex) : "Couldn't read that photo. Try a JPEG or PNG."); }
+  });
+  document.querySelectorAll("[data-cp]").forEach(b => b.onclick = () => { S.catchLb = { pid: b.dataset.cp, i: +b.dataset.cpi }; render(); });
+  const lb = $("#cp-lb");
+  if (lb) {
+    const n = catchFor(S.catchLb.pid).length;
+    const close = () => { S.catchLb = null; document.removeEventListener("keydown", window.__cpKey); render(); };
+    const step = d => { S.catchLb.i = (S.catchLb.i + d + n) % n; render(); };
+    document.removeEventListener("keydown", window.__cpKey || (() => {}));
+    window.__cpKey = e => { if (e.key === "Escape") close(); if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); };
+    document.addEventListener("keydown", window.__cpKey);
+    $("#cp-close").onclick = close;
+    lb.onclick = e => { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); };
+    $("#cp-prev") && ($("#cp-prev").onclick = () => step(-1));
+    $("#cp-next") && ($("#cp-next").onclick = () => step(1));
+    const del = $("#cp-del");
+    del.onclick = () => {
+      const c = catchFor(S.catchLb.pid)[S.catchLb.i]; if (!c || !needDb()) return;
+      if (!del.dataset.armed) { del.dataset.armed = "1"; del.textContent = "Tap again to delete"; return; }
+      S.db.doc("catchPhotos/" + c.id).delete().then(() => { toast("Photo deleted"); if (n <= 1) close(); else { S.catchLb.i = Math.max(0, S.catchLb.i - 1); render(); } }, ex => toast(errMsg(ex)));
+    };
+  }
+  const pd = $("#p-date"); if (pd) pd.onchange = () => { if (pd.value) $("#p-moon").value = moonPhase(new Date(pd.value + "T12:00").getTime()); };
+  $("#post-form").onsubmit = async e => {
+    e.preventDefault();
+    const author = $("#p-name").value.trim(), body = $("#p-body").value.trim();
+    const fish = true;
+    const rec = { kind: "fishing", author, body, createdAt: Date.now(), pid: "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7) };
+    if (fish) rec.fish = { date: $("#p-date").value, species: $("#p-species").value.trim(), count: $("#p-count").value.trim(), biggest: $("#p-biggest").value.trim(),
+      spots: [1, 2, 3, 4, 5].map(n => ({ n, name: $("#p-spot" + n).value.trim(), notes: $("#p-spotn" + n).value.trim() })).filter(sp => sp.name || sp.notes), bait: $("#p-bait").value.trim(),
+      water: $("#p-water").value.trim(), air: $("#p-air").value.trim(), wind: $("#p-wind").value.trim(), moon: $("#p-moon").value, tide: $("#p-tide").value.trim() };
+    if (!body && !(fish && rec.fish.species) && !S.catchPick.length) { toast("Write something before posting."); return; }
+    if (!author) { toast("Add your name so everyone knows who posted."); $("#p-name").focus(); return; }
+    if (!needDb()) return;
+    rememberName(author);
+    try {
+      await S.db.collection("posts").add(rec);
+      const picks = S.catchPick; S.catchPick = [];
+      if (picks.length) {
+        try { await addCatchPhotos(rec.pid, picks.map(c => c.file), $("#p-photos-st")); }
+        catch (ex) { toast(ex?.code ? errMsg(ex) : "The report posted, but a photo couldn't be read. Add it from the report."); }
+        picks.forEach(c => URL.revokeObjectURL(c.url));
+      }
+      ["p-body", "p-species", "p-count", "p-biggest", "p-spot1", "p-spot2", "p-spot3", "p-spot4", "p-spot5", "p-spotn1", "p-spotn2", "p-spotn3", "p-spotn4", "p-spotn5", "p-bait", "p-water", "p-air", "p-wind", "p-tide", "p-date"].forEach(id => { const el = document.getElementById(id); if (el) el.value = ""; });
+      toast("Posted"); render();
+    } catch (ex) { toast(errMsg(ex)); }
+  };
+};
+
+/* two-tap delete instead of confirm() */
+function confirmDelete(btn, coll, id) {
+  if (btn.dataset.armed) { S.db?.doc(coll + "/" + id).delete().then(() => toast("Deleted"), ex => toast(errMsg(ex))); return; }
+  if (!needDb()) return;
+  btn.dataset.armed = "1"; btn.textContent = "Tap again to delete"; btn.style.color = "var(--warn)";
+  setTimeout(() => { if (btn.isConnected) { delete btn.dataset.armed; btn.textContent = "Delete"; btn.style.color = ""; } }, 3000);
+}
+
+/* ---------- photo album ---------- */
+function photosView() {
+  const ps = S.photos;
+  if (S.slide >= ps.length) S.slide = 0;
+  const cur = ps[S.slide];
+  return `<p class="eyebrow">Members · Photos</p><h2>Grip’n’Grins</h2>
+    ${cur ? `<section class="show" aria-label="Slideshow">
+      <div class="show-stage" id="show-stage">
+        <div class="show-bg" id="show-bg" style="background-image:url('${esc(cur.image)}')"></div>
+        <img class="show-img" id="show-img" src="${esc(cur.image)}" alt="${esc(cur.caption || "Cabin photo")}">
+        ${ps.length > 1 ? `<button class="show-nav prev" id="show-prev" aria-label="Previous photo">‹</button><button class="show-nav next" id="show-next" aria-label="Next photo">›</button>` : ""}
+      </div>
+      <div class="show-bar"><span class="show-cap" id="show-cap">${slideCaption(cur)}</span><span class="spacer"></span>
+        ${ps.length > 1 ? `<button class="linkbtn" type="button" id="show-play">${S.showPaused ? "Play" : "Pause"}</button>` : ""}
+        <span class="show-count" id="show-count">${S.slide + 1} / ${ps.length}</span></div>
+    </section>` : ""}
+    <div class="row"><div><h3 id="view-all">View all${ps.length ? ` <span class="meta">(${ps.length})</span>` : ""}</h3></div><span class="spacer"></span>
+      ${ps.length ? `<button class="btn ghost" type="button" id="ph-edit" aria-pressed="${S.photoEdit ? "true" : "false"}">${S.photoEdit ? "Done" : "Remove photos"}</button>` : ""}
+      <label class="btn" for="ph-file" style="display:inline-flex;cursor:pointer">Add photos</label>
+      <input type="file" id="ph-file" accept="image/*" multiple hidden></div>
+    <p class="lede">${S.photoEdit ? "Tap Remove on any photo, then tap again to confirm. Removed photos are gone for everyone." : "Catches, sunsets and trips to the cabin. Photos are shrunk to phone-screen size when you add them."}</p>
+    <p class="meta" id="ph-status" role="status"></p>
+    ${ps.length ? `<div class="album${S.photoEdit ? " editing" : ""}">${ps.map((p, i) => `<div class="ph-wrap"><button class="ph" data-ph="${i}" aria-label="Open photo${p.caption ? ": " + esc(p.caption) : ""}"><img src="${esc(p.thumb || p.image)}" alt="${esc(p.caption || "Cabin photo")}" loading="lazy"></button>${S.photoEdit ? `<button class="ph-del" data-rm-photo="${esc(p.id)}">Remove</button>` : ""}</div>`).join("")}</div>`
+      : `<p class="empty">No photos yet. Use Add photos to post the first grip’n’grin.</p>`}
+    ${S.lightbox >= 0 && ps[S.lightbox] ? lightboxView(ps[S.lightbox]) : ""}`;
+}
+function slideCaption(p) {
+  return `${p.caption ? `<strong>${esc(p.caption)}</strong> · ` : ""}<span class="meta">${esc(p.by || "a member")} · ${esc(fmtDate(p.createdAt))}</span>`;
+}
+function bindSlideshow() {
+  clearInterval(window.__showTimer);
+  const img = $("#show-img"); if (!img) return;
+  const go = d => {
+    const ps = S.photos; if (ps.length < 2) return;
+    S.slide = (S.slide + d + ps.length) % ps.length;
+    const p = ps[S.slide];
+    img.classList.add("fading");
+    setTimeout(() => {
+      img.src = p.image; img.alt = p.caption || "Cabin photo";
+      $("#show-bg").style.backgroundImage = `url('${p.image}')`;
+      $("#show-cap").innerHTML = slideCaption(p);
+      $("#show-count").textContent = `${S.slide + 1} / ${ps.length}`;
+      img.classList.remove("fading");
+      const nx = ps[(S.slide + 1) % ps.length]; if (nx) new Image().src = nx.image;
+    }, 250);
+  };
+  const start = () => {
+    clearInterval(window.__showTimer);
+    if (S.showPaused || S.photos.length < 2) return;
+    window.__showTimer = setInterval(() => {
+      if (!document.getElementById("show-img")) return clearInterval(window.__showTimer);
+      if (S.lightbox < 0 && !document.hidden) go(1);
+    }, 2000);
+  };
+  const manual = d => { go(d); start(); };
+  $("#show-prev") && ($("#show-prev").onclick = () => manual(-1));
+  $("#show-next") && ($("#show-next").onclick = () => manual(1));
+  const pl = $("#show-play");
+  if (pl) pl.onclick = () => { S.showPaused = !S.showPaused; pl.textContent = S.showPaused ? "Play" : "Pause"; start(); };
+  img.onclick = () => { S.lightbox = S.slide; render(); };
+  let x0 = null; const st = $("#show-stage");
+  st.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  st.addEventListener("touchend", e => { if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 40) manual(dx < 0 ? 1 : -1); });
+  if (S.photos.length > 1) new Image().src = S.photos[(S.slide + 1) % S.photos.length].image;
+  start();
+}
+function lightboxView(p) {
+  const n = S.photos.length;
+  return `<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo">
+    <div class="lb-bar"><span class="count">${S.lightbox + 1} / ${n}</span><span class="spacer"></span>
+      <button class="lb-btn" id="lb-close" aria-label="Close">Close</button></div>
+    <div class="lb-stage">
+      ${n > 1 ? `<button class="lb-nav" id="lb-prev" aria-label="Previous photo">‹</button>` : ""}
+      <img src="${esc(p.image)}" alt="${esc(p.caption || "Cabin photo")}">
+      ${n > 1 ? `<button class="lb-nav" id="lb-next" aria-label="Next photo">›</button>` : ""}
+    </div>
+    <div class="lb-foot">
+      <form class="addrow" id="lb-cap"><input type="text" id="lb-caption" data-fresh value="${esc(p.caption || "")}" placeholder="Add a caption" aria-label="Caption"><button class="btn small" type="submit">Save</button></form>
+      <div class="row"><span class="meta">Added by ${esc(p.by || "a member")} · ${esc(fmtDate(p.createdAt))}</span><span class="spacer"></span>
+        <button class="linkbtn" data-del-photo="${esc(p.id)}">Delete</button></div>
+    </div></div>`;
+}
+function loadImage(file) {
+  return new Promise((res, rej) => { const url = URL.createObjectURL(file); const im = new Image(); im.onload = () => { URL.revokeObjectURL(url); res(im); }; im.onerror = () => { URL.revokeObjectURL(url); rej(new Error("unreadable")); }; im.src = url; });
+}
+function shrink(im, edge, q, maxChars) {
+  let e = edge, quality = q, out, w, h;
+  for (;;) {
+    const k = Math.min(1, e / Math.max(im.naturalWidth, im.naturalHeight));
+    w = Math.round(im.naturalWidth * k); h = Math.round(im.naturalHeight * k);
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    c.getContext("2d").drawImage(im, 0, 0, w, h);
+    out = c.toDataURL("image/jpeg", quality);
+    if (out.length <= maxChars || e < 500) return { url: out, w, h };
+    if (quality > 0.62) quality -= 0.08; else e -= 150;
+  }
+}
+binders.photos = () => {
+  bindSlideshow();
+  document.querySelectorAll("[data-ph]").forEach(b => b.onclick = () => { if (S.photoEdit) return; S.lightbox = +b.dataset.ph; render(); });
+  const pe = $("#ph-edit"); if (pe) pe.onclick = () => { S.photoEdit = !S.photoEdit; render(); };
+  document.querySelectorAll("[data-rm-photo]").forEach(b => b.onclick = () => {
+    if (b.dataset.armed) { S.db?.doc("photos/" + b.dataset.rmPhoto).delete().then(() => toast("Photo removed"), ex => toast(errMsg(ex))); return; }
+    if (!needDb()) return;
+    b.dataset.armed = "1"; b.textContent = "Tap to confirm"; b.classList.add("armed");
+    setTimeout(() => { if (b.isConnected) { delete b.dataset.armed; b.textContent = "Remove"; b.classList.remove("armed"); } }, 3000);
+  });
+  $("#ph-file").onchange = async e => {
+    const files = [...e.target.files]; e.target.value = "";
+    if (!files.length || !needDb()) return;
+    const st = $("#ph-status");
+    let done = 0;
+    for (const f of files) {
+      st.textContent = `Adding photo ${done + 1} of ${files.length}…`;
+      try {
+        const im = await loadImage(f);
+        const big = shrink(im, 1400, 0.78, 168000), th = shrink(im, 480, 0.68, 40000);
+        await S.db.collection("photos").add({ image: big.url, thumb: th.url, w: big.w, h: big.h, caption: "", by: myName(), createdAt: Date.now() });
+        done++;
+      } catch (ex) { st.textContent = ex?.code ? errMsg(ex) : `Couldn't read ${f.name}. Try a JPEG or PNG.`; return; }
+    }
+    st.textContent = ""; toast(done === 1 ? "Photo added" : `${done} photos added`);
+  };
+  const lb = $("#lb"); if (!lb) return;
+  const close = () => { S.lightbox = -1; document.removeEventListener("keydown", onKey); render(); };
+  const step = d => { S.lightbox = (S.lightbox + d + S.photos.length) % S.photos.length; render(); };
+  function onKey(e) { if (e.target.id === "lb-caption") return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); }
+  document.removeEventListener("keydown", window.__lbKey || (() => {})); window.__lbKey = onKey; document.addEventListener("keydown", onKey);
+  $("#lb-close").onclick = close;
+  lb.onclick = e => { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); };
+  $("#lb-prev") && ($("#lb-prev").onclick = () => step(-1));
+  $("#lb-next") && ($("#lb-next").onclick = () => step(1));
+  const p = S.photos[S.lightbox];
+  $("#lb-cap").onsubmit = async e => {
+    e.preventDefault(); if (!needDb()) return;
+    try { await S.db.doc("photos/" + p.id).update({ caption: $("#lb-caption").value.trim() }); toast("Caption saved"); } catch (ex) { toast(errMsg(ex)); }
+  };
+  document.querySelectorAll("[data-del-photo]").forEach(b => b.onclick = () => {
+    if (b.dataset.armed) { S.lightbox = -1; }
+    confirmDelete(b, "photos", b.dataset.delPhoto);
+  });
+};
+
+/* ---------- checklists (groceries + to-dos) ---------- */
+function itemRow(coll, it) {
+  return `<li class="${it.done ? "done" : ""}">
+    <input type="checkbox" data-toggle="${coll}/${esc(it.id)}" ${it.done ? "checked" : ""} aria-label="Mark ${esc(it.text)} done">
+    <div class="txt">${esc(it.text)}${it.by ? `<div class="who">added by ${esc(it.by)}${it.done && it.doneBy ? ` · done by ${esc(it.doneBy)}` : ""}</div>` : ""}</div>
+    <button class="linkbtn" data-del-item="${coll}/${esc(it.id)}">Delete</button></li>`;
+}
+function checklist(coll, items, emptyMsg) {
+  const open = items.filter(i => !i.done), done = items.filter(i => i.done);
+  return `<div class="card" style="display:grid;gap:10px">
+    ${items.length ? `<ul class="items">${open.map(i => itemRow(coll, i)).join("")}${done.map(i => itemRow(coll, i)).join("")}</ul>` : `<p class="empty">${emptyMsg}</p>`}
+    ${done.length ? `<div class="row"><span class="count">${done.length} checked off</span><span class="spacer"></span><button class="linkbtn" data-clear="${coll}">Clear checked items</button></div>` : ""}
+  </div>`;
+}
+function bindChecklist(coll, getItems) {
+  document.querySelectorAll("[data-toggle]").forEach(cb => cb.onchange = async () => {
+    if (!needDb()) { cb.checked = !cb.checked; return; }
+    try { await S.db.doc(cb.dataset.toggle).update({ done: cb.checked, doneBy: cb.checked ? myName() : "", doneAt: cb.checked ? Date.now() : 0 }); }
+    catch (ex) { cb.checked = !cb.checked; toast(errMsg(ex)); }
+  });
+  document.querySelectorAll("[data-del-item]").forEach(b => b.onclick = () => { const [c, id] = b.dataset.delItem.split("/"); confirmDelete(b, c, id); });
+  document.querySelectorAll("[data-clear]").forEach(b => b.onclick = async () => {
+    if (!needDb()) return;
+    for (const it of getItems().filter(i => i.done)) { try { await S.db.doc(coll + "/" + it.id).delete(); } catch (ex) { toast(errMsg(ex)); return; } }
+    toast("Cleared");
+  });
+}
+async function addItem(coll, inputId, extra = {}) {
+  const el = document.getElementById(inputId); const text = el.value.trim();
+  if (!text) return;
+  if (!needDb()) return;
+  try { await S.db.collection(coll).add({ text, done: false, by: myName(), createdAt: Date.now(), ...extra }); el.value = ""; el.focus(); }
+  catch (ex) { toast(errMsg(ex)); }
+}
+function nameNudge() {
+  return myName() ? "" : `<form class="row" id="name-form"><label for="who" style="flex:1">Your name<span class="hint">Shown next to items you add.</span><input type="text" id="who"></label><button class="btn ghost small" style="align-self:end" type="submit">Save name</button></form>`;
+}
+function bindNameNudge() { const f = $("#name-form"); if (f) f.onsubmit = e => { e.preventDefault(); rememberName($("#who").value); render(); }; }
+
+/* ---------- grocery list: categories (e.g. Burgers) with sub items (e.g. buns) ---------- */
+const NO_CAT = "Everything else";
+// Members and Guest each keep dated lists (db `groceryLists` {kind, date, by, createdAt});
+// items in `groceries` point at their list with `list: <list id>`
+const listDate = l => fmtDate(new Date(l.date + "T12:00").getTime());
+const openList = () => S.groceryLists.find(l => l.id === S.gOpen && l.kind === S.gList);
+const kindLists = k => S.groceryLists.filter(l => l.kind === k);
+const curGroceries = () => S.gOpen ? S.groceries.filter(i => i.list === S.gOpen) : [];
+function groceryGroups() {
+  const groups = new Map();
+  for (const it of curGroceries()) {
+    const c = (it.category || "").trim();
+    const key = c.toLowerCase();
+    if (!groups.has(key)) groups.set(key, { name: c || NO_CAT, items: [] });
+    groups.get(key).items.push(it);
+  }
+  const list = [...groups.entries()].filter(([k]) => k).map(([, g]) => g);
+  if (groups.has("")) list.push(groups.get(""));
+  return list;
+}
+function groceriesView() {
+  const guest = S.gList === "guest", cur = openList();
+  if (!cur) S.gOpen = null;
+  const lists = kindLists(S.gList);
+  const left = id => S.groceries.filter(i => i.list === id && !i.done).length;
+  const head = `<div><p class="eyebrow">Members</p><h2>Grocery List</h2></div>
+    <p class="lede">Start a new list for each trip. Each list is titled with the date it was made. Tap a date to open that list.</p>
+    ${nameNudge()}
+    <div class="kind-switch" role="group" aria-label="Which lists">
+      <button type="button" data-gl="members" aria-pressed="${!guest}">Members Lists · ${kindLists("members").length}</button>
+      <button type="button" data-gl="guest" aria-pressed="${guest}">Guest Grocery Lists · ${kindLists("guest").length}</button></div>
+    ${guest ? guestListCard() : ""}`;
+  if (!cur) return `${head}
+    <section class="card" style="display:grid;gap:10px" aria-label="${guest ? "Guest" : "Members"} lists">
+      <div class="row"><h3 style="margin:0">${guest ? "Guest Grocery Lists" : "Members Lists"}</h3><span class="spacer"></span><button class="btn small" id="g-new-list">New List</button></div>
+      ${lists.length ? `<ul class="g-links">${lists.map(l => `<li><button type="button" data-open-list="${esc(l.id)}"><span>${esc(listDate(l))}</span><span class="count">${left(l.id) ? left(l.id) + " to get" : S.groceries.some(i => i.list === l.id) ? "all set" : "empty"}</span></button></li>`).join("")}</ul>`
+        : `<p class="meta">No lists yet. Tap New List to start one dated today.</p>`}
+    </section>`;
+  const groups = groceryGroups();
+  const cats = groups.filter(g => g.name !== NO_CAT).map(g => g.name);
+  const done = curGroceries().filter(i => i.done).length;
+  return `${head}
+    <div class="row"><button class="linkbtn" id="g-back">‹ All ${guest ? "guest" : "members"} lists</button></div>
+    <div class="row"><div><p class="eyebrow">${guest ? "Guest Grocery List" : "Members List"}</p><h2 style="margin:0">${esc(listDate(cur))}</h2><p class="meta">Started by ${esc(cur.by || "a member")}</p></div><span class="spacer"></span>
+      <button class="btn ghost" id="g-import-toggle" aria-expanded="${S.importOpen ? "true" : "false"}">${S.importOpen ? "Close import" : "Import a list"}</button></div>
+    ${S.importOpen ? importPanel() : ""}
+    <form class="card g-add" id="g-form">
+      <div class="fields">
+        <label for="g-cat">Item or category<span class="hint">e.g. Burgers. Leave blank for a single item.</span>
+          <input type="text" id="g-cat" list="g-cats" placeholder="Burgers" autocomplete="off"></label>
+        <label for="g-new">Sub item<span class="hint">Separate several with commas.</span>
+          <input type="text" id="g-new" placeholder="Buns, patties, cheese" autocomplete="off"></label>
+      </div>
+      <datalist id="g-cats">${cats.map(c => `<option value="${esc(c)}">`).join("")}</datalist>
+      <div class="row"><button class="btn" type="submit">Add to list</button></div>
+    </form>
+    ${groups.length ? `<div class="g-groups">${groups.map(groupCard).join("")}</div>` : `<p class="empty">This list is empty. Add the first item above, or paste in a list with Import a list.</p>`}
+    <div class="row">${done ? `<span class="count">${done} checked off</span><button class="linkbtn" data-clear="groceries">Clear checked items</button>` : ""}<span class="spacer"></span><button class="linkbtn" id="g-del-list">Delete this list</button></div>`;
+}
+function groupCard(g) {
+  const open = g.items.filter(i => !i.done), done = g.items.filter(i => i.done);
+  const isCat = g.name !== NO_CAT;
+  return `<section class="card g-group">
+    <div class="g-head"><h3>${esc(g.name)}</h3><span class="count">${open.length ? open.length + " to get" : "all set"}</span></div>
+    <ul class="items">${open.map(i => itemRow("groceries", i)).join("")}${done.map(i => itemRow("groceries", i)).join("")}</ul>
+    ${isCat ? `<form class="addrow g-sub" data-cat="${esc(g.name)}"><input type="text" placeholder="Add to ${esc(g.name)}…" aria-label="Add a sub item to ${esc(g.name)}"><button class="btn ghost small" type="submit">Add</button></form>` : ""}
+  </section>`;
+}
+function importPanel() {
+  const prev = S.importPreview;
+  return `<div class="card" style="display:grid;gap:12px">
+    <h3>Import a list into the ${esc(listDate(openList()))} list</h3>
+    <p class="meta">Paste a list from your phone's notes or a text message, or choose a file (.txt or .csv). Put each item on its own line. To group items, write the category on its own line ending with a colon, then its items underneath, like:</p>
+    <pre class="g-example">Burgers:
+- buns
+- patties
+Breakfast: eggs, bacon, coffee
+paper towels</pre>
+    <label for="g-paste">Your list<textarea id="g-paste" rows="8" placeholder="Paste your list here"></textarea></label>
+    <div class="row">
+      <label class="btn ghost small" for="g-file" style="display:inline-flex;cursor:pointer">Choose a file</label>
+      <input type="file" id="g-file" accept=".txt,.csv,.tsv,text/plain,text/csv" hidden>
+      <span class="spacer"></span>
+      <button class="btn small" type="button" id="g-preview">Preview</button>
+    </div>
+    ${prev ? (prev.length ? `<div class="g-preview">
+        <p class="count">${prev.length} items found</p>
+        ${previewGroups(prev)}
+        <div class="row"><button class="btn" type="button" id="g-import">Add ${prev.length} items to the list</button></div></div>`
+      : `<p class="notice">No items found. Check that each item is on its own line.</p>`) : ""}
+  </div>`;
+}
+function previewGroups(items) {
+  const m = new Map();
+  items.forEach(i => { const k = i.category || NO_CAT; if (!m.has(k)) m.set(k, []); m.get(k).push(i.text); });
+  return [...m.entries()].map(([k, v]) => `<p><strong>${esc(k)}</strong>: ${v.map(esc).join(", ")}</p>`).join("");
+}
+/* Turn pasted text or a CSV into {category, text} items. Understands
+   "Category:" header lines, indented or bulleted lines under a heading,
+   "Category: a, b, c", and two-column CSV / tab rows (category, item). */
+function parseList(raw, isCsv) {
+  const out = [];
+  const clean = s => s.replace(/^\s*(?:[-*•◦▪‣·○●]|\[[ xX]?\]|☐|☑|✓|✔|\d+[.)])\s*/, "").replace(/\s+/g, " ").trim();
+  const lines = String(raw || "").replace(/\r/g, "").split("\n");
+  if (isCsv || lines.some(l => l.includes("\t"))) {
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      const cols = (line.includes("\t") ? line.split("\t") : line.match(/("([^"]|"")*"|[^,]*)(,|$)/g).map(c => c.replace(/,$/, ""))).map(c => c.replace(/^"|"$/g, "").replace(/""/g, '"').trim());
+      if (/^(category|item|meal)$/i.test(cols[0]) && out.length === 0) continue;
+      const filled = cols.filter(Boolean);
+      if (filled.length >= 2) out.push({ category: clean(filled[0]), text: clean(filled[1]) });
+      else if (filled.length === 1) out.push({ category: "", text: clean(filled[0]) });
+    }
+    return out.filter(i => i.text);
+  }
+  let cat = "", lastPlain = -1, indentCat = false, groupMarked = false;
+  for (const line of lines) {
+    if (!line.trim()) { cat = ""; lastPlain = -1; indentCat = false; groupMarked = false; continue; }
+    const indented = /^(\s{2,}|\t)/.test(line);
+    const text = clean(line);
+    if (!text) continue;
+    const colon = text.match(/^([^:]{1,40}):\s*(.*)$/);
+    if (colon && !/^https?$/i.test(colon[1])) {
+      const name = colon[1].trim();
+      if (colon[2]) { colon[2].split(/,|;/).map(clean).filter(Boolean).forEach(t => out.push({ category: name, text: t })); cat = ""; }
+      else cat = name;
+      lastPlain = -1; indentCat = false; groupMarked = false; continue;
+    }
+    if (indentCat && !indented) { cat = ""; indentCat = false; }
+    if (indented && lastPlain >= 0 && !cat) { cat = out[lastPlain].text; out.splice(lastPlain, 1); lastPlain = -1; indentCat = true; }
+    const marked = indented || /^\s*(?:[-*•◦▪‣·○●]|\[[ xX]?\]|☐|☑|\d+[.)])/.test(line);
+    if (cat && groupMarked && !marked) { cat = ""; groupMarked = false; }
+    if (cat) { if (marked) groupMarked = true; out.push({ category: cat, text }); continue; }
+    out.push({ category: "", text }); lastPlain = out.length - 1;
+  }
+  return out;
+}
+async function addGroceries(items) {
+  if (!items.length || !needDb()) return false;
+  const by = myName(); let t = Date.now();
+  for (const it of items) {
+    try { await S.db.collection("groceries").add({ text: it.text, category: it.category || "", done: false, by, createdAt: t++, list: S.gOpen }); }
+    catch (ex) { toast(errMsg(ex)); return false; }
+  }
+  return true;
+}
+function guestListCard() {
+  const url = S.site.guestListUrl || "";
+  if (S.editing === "guestlist") return `<div class="card edit-area">
+    <label for="ed-guestListUrl">Guest grocery list link<span class="hint">Paste the link to the trip grocery list guests can open.</span></label>
+    <input type="url" id="ed-guestListUrl" data-fresh value="${esc(url)}" placeholder="https://…">
+    <div class="row"><button class="btn" data-save="guestlist">Save</button><button class="btn ghost" data-cancel>Cancel</button></div></div>`;
+  return `<section class="card g-guest">
+    <div style="display:grid;gap:4px;min-width:0"><p class="eyebrow">For guests on a trip</p><h3>Guest Grocery List</h3>
+      <p class="meta">Start a dated list for each trip, then type items or paste one in with Import a list. Copy a list as text to send to your group${url ? ", or share the guest list link" : ""}.</p></div>
+    <div class="row">
+      ${url ? `<a class="btn" href="${esc(url)}" target="_blank" rel="noopener" style="text-decoration:none">Open guest list</a><button class="btn ghost" type="button" id="gl-copy">Copy link</button>` : ""}
+      ${S.gOpen ? `<button class="btn ghost" type="button" id="gl-copy-items" ${curGroceries().some(i => !i.done) ? "" : "disabled"}>Copy this list as text</button>` : ""}
+      <button class="linkbtn" type="button" data-edit="guestlist">${url ? "Change link" : "Add guest list link"}</button>
+    </div>
+  </section>`;
+}
+function listAsText() {
+  return groceryGroups().map(g => {
+    const open = g.items.filter(i => !i.done).map(i => i.text);
+    if (!open.length) return "";
+    return g.name === NO_CAT ? open.join("\n") : `${g.name}:\n${open.map(t => "- " + t).join("\n")}`;
+  }).filter(Boolean).join("\n\n");
+}
+async function copyText(t, okMsg) {
+  try { await navigator.clipboard.writeText(t); toast(okMsg); }
+  catch { toast("Couldn't copy here. Select the text and copy it yourself."); }
+}
+const splitItems = s => s.split(",").map(x => x.trim()).filter(Boolean);
+binders.groceries = () => {
+  bindNameNudge();
+  bindEditing();
+  const glc = $("#gl-copy"); if (glc) glc.onclick = () => copyText(S.site.guestListUrl, "Link copied");
+  const gli = $("#gl-copy-items"); if (gli) gli.onclick = () => copyText(listAsText(), "List copied");
+  document.querySelectorAll("[data-gl]").forEach(b => b.onclick = () => { S.gList = b.dataset.gl; S.gOpen = null; S.importOpen = false; S.importPreview = null; render(); });
+  document.querySelectorAll("[data-open-list]").forEach(b => b.onclick = () => { S.gOpen = b.dataset.openList; S.importOpen = false; render(); window.scrollTo({ top: 0 }); });
+  const nl = $("#g-new-list");
+  if (nl) nl.onclick = async () => {
+    if (!needDb()) return;
+    const date = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+    nl.disabled = true;
+    try { const id = "l" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); await S.db.doc("groceryLists/" + id).set({ kind: S.gList, date, by: myName(), createdAt: Date.now() }); S.gOpen = id; render(); toast("New list started"); }
+    catch (ex) { nl.disabled = false; toast(errMsg(ex)); }
+  };
+  if (!S.gOpen) return;
+  $("#g-back").onclick = () => { S.gOpen = null; S.importOpen = false; render(); };
+  const dl = $("#g-del-list");
+  dl.onclick = () => {
+    if (!needDb()) return;
+    if (!dl.dataset.armed) { dl.dataset.armed = "1"; dl.textContent = "Tap again to delete this list and its items"; dl.style.color = "var(--warn)"; return; }
+    const id = S.gOpen;
+    S.groceries.filter(i => i.list === id).forEach(i => S.db.doc("groceries/" + i.id).delete().catch(() => {}));
+    S.db.doc("groceryLists/" + id).delete().then(() => { S.gOpen = null; render(); toast("List deleted"); }, ex => toast(errMsg(ex)));
+  };
+  $("#g-form").onsubmit = async e => {
+    e.preventDefault();
+    const cat = $("#g-cat").value.trim(), subs = splitItems($("#g-new").value);
+    let items;
+    if (subs.length) items = subs.map(text => ({ category: cat, text }));
+    else if (cat) items = [{ category: "", text: cat }];
+    else { $("#g-cat").focus(); return; }
+    if (await addGroceries(items)) { $("#g-new").value = ""; if (!subs.length) $("#g-cat").value = ""; $("#g-new").focus(); }
+  };
+  document.querySelectorAll(".g-sub").forEach(f => f.onsubmit = async e => {
+    e.preventDefault();
+    const inp = f.querySelector("input"); const subs = splitItems(inp.value);
+    if (subs.length && await addGroceries(subs.map(text => ({ category: f.dataset.cat, text })))) inp.value = "";
+  });
+  $("#g-import-toggle").onclick = () => { S.importOpen = !S.importOpen; S.importPreview = null; render(); };
+  if (S.importOpen) {
+    let fromCsv = false;
+    $("#g-file").onchange = async e => {
+      const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+      if (/\.(xlsx?|numbers|docx?|pdf)$/i.test(f.name)) { toast("That file type can't be read here. Copy the list and paste it instead."); return; }
+      $("#g-paste").value = await f.text(); fromCsv = /\.csv$/i.test(f.name);
+      S.importPreview = parseList($("#g-paste").value, fromCsv); render();
+    };
+    $("#g-paste").oninput = () => { fromCsv = false; };
+    $("#g-preview").onclick = () => { S.importPreview = parseList($("#g-paste").value, fromCsv); render(); };
+    const imp = $("#g-import");
+    if (imp) imp.onclick = async () => {
+      const items = S.importPreview; imp.disabled = true;
+      if (await addGroceries(items)) { S.importOpen = false; S.importPreview = null; render(); toast(`${items.length} items added`); }
+      else imp.disabled = false;
+    };
+  }
+  bindChecklist("groceries", curGroceries);
+};
+
+function todoView() {
+  const ups = S.posts.filter(p => p.kind === "update");
+  const upd = S.todoKind === "updates";
+  const buy = S.todoKind === "buy";
+  const items = S.todos.filter(t => (t.kind || "buy") === S.todoKind);
+  const openBuy = S.todos.filter(t => t.kind === "buy" && !t.done).length, openWork = S.todos.filter(t => t.kind === "work" && !t.done).length;
+  return `<div><p class="eyebrow">Members</p><h2>Cabin To-Dos</h2></div>
+    <p class="lede">Household items to buy, work that needs doing around the place, and cabin updates.</p>
+    ${upd ? "" : nameNudge()}
+    <div class="kind-switch" role="group" aria-label="List">
+      <button type="button" data-tk="buy" aria-pressed="${buy}">Items To Buy · ${openBuy}</button>
+      <button type="button" data-tk="work" aria-pressed="${S.todoKind === "work"}">Work To Do · ${openWork}</button>
+      <button type="button" data-tk="updates" aria-pressed="${upd}">Updates · ${ups.length}</button></div>
+    ${upd ? `<form class="card" id="u-form" style="display:grid;gap:14px">
+      <label for="u-name">Your name<input type="text" id="u-name" value="${esc(myName())}"></label>
+      <label for="u-body">What's new<textarea id="u-body" placeholder="Replaced the porch light, the AC filter is due next month…"></textarea></label>
+      <div class="row"><button class="btn" type="submit">Post update</button></div></form>
+    <div style="display:grid;gap:12px">${ups.length ? ups.map(postCard).join("") : `<p class="empty">No cabin updates yet.</p>`}</div>` : `<form class="addrow" id="t-form"><input type="text" id="t-new" placeholder="${buy ? "e.g. Replacement porch light bulbs" : "e.g. Re-stain the dock railing"}" aria-label="New to-do"><button class="btn" type="submit">Add</button></form>
+    ${checklist("todos", items, buy ? "Nothing to buy right now." : "No work on the list right now.")}`}`;
+}
+binders.todo = () => {
+  bindNameNudge();
+  document.querySelectorAll("[data-tk]").forEach(b => b.onclick = () => { S.todoKind = b.dataset.tk; render(); });
+  if (S.todoKind === "updates") {
+    document.querySelectorAll("[data-del-post]").forEach(b => b.onclick = () => confirmDelete(b, "posts", b.dataset.delPost));
+    $("#u-form").onsubmit = async e => {
+      e.preventDefault();
+      const author = $("#u-name").value.trim(), body = $("#u-body").value.trim();
+      if (!body) { toast("Write something before posting."); return; }
+      if (!author) { toast("Add your name so everyone knows who posted."); $("#u-name").focus(); return; }
+      if (!needDb()) return;
+      rememberName(author);
+      try { await S.db.collection("posts").add({ kind: "update", author, body, createdAt: Date.now() }); $("#u-body").value = ""; toast("Posted"); } catch (ex) { toast(errMsg(ex)); }
+    };
+    return;
+  }
+  $("#t-form").onsubmit = e => { e.preventDefault(); addItem("todos", "t-new", { kind: S.todoKind }); };
+  bindChecklist("todos", () => S.todos.filter(t => (t.kind || "buy") === S.todoKind));
+};
+
+/* ---------- member contacts ---------- */
+function contactForm(c) {
+  const v = c || {};
+  return `<form class="card" id="ct-form" style="display:grid;gap:14px">
+    <h3>${c ? "Edit contact" : "Add a member"}</h3>
+    <div class="fields">
+      <label for="ct-name">Name<input type="text" id="ct-name" data-fresh value="${esc(v.name || "")}" autocomplete="off"></label>
+      <label for="ct-cell">Cell phone<input type="tel" id="ct-cell" data-fresh value="${esc(v.cell || "")}" autocomplete="off"></label>
+      <label for="ct-email">Email<input type="email" id="ct-email" data-fresh value="${esc(v.email || "")}" autocomplete="off"></label>
+      <label for="ct-role">Role<span class="hint">Optional, e.g. Foreman.</span><input type="text" id="ct-role" data-fresh value="${esc(v.role || "")}" autocomplete="off"></label>
+    </div>
+    <label for="ct-address">Home address<input type="text" id="ct-address" data-fresh value="${esc(v.address || "")}" autocomplete="off"></label>
+    <label for="ct-note">Note<span class="hint">Optional, e.g. spouse's name or best time to call.</span><input type="text" id="ct-note" data-fresh value="${esc(v.note || "")}" autocomplete="off"></label>
+    <div class="row"><button class="btn" type="submit">${c ? "Save changes" : "Add contact"}</button>${c ? `<button class="btn ghost" type="button" id="ct-cancel">Cancel</button>` : ""}</div>
+  </form>`;
+}
+// people with a role (e.g. Foreman) first, then everyone by name
+function sortContacts(cs) {
+  return [...cs].sort((a, b) => (b.role ? 1 : 0) - (a.role ? 1 : 0) || String(a.name || "").localeCompare(String(b.name || "")));
+}
+function contactsView() {
+  const list = sortContacts(S.contacts);
+  const editing = S.contactEdit && S.contacts.find(c => c.id === S.contactEdit);
+  return `<div><p class="eyebrow">Members</p><h2>Member Contacts</h2></div>
+    <p class="lede">Everyone's email and cell in one place. Only members can see this page.</p>
+    ${editing ? contactForm(editing) : ""}
+    ${list.length ? `<div class="ct-list">${list.map(c => `<article class="card ct">
+        <div class="ct-top"><div class="row" style="gap:8px"><h3>${esc(c.name || "Unnamed")}</h3>${c.role ? `<span class="tag fish">${esc(c.role)}</span>` : ""}</div>
+          <div class="row"><button class="linkbtn" data-ct-edit="${esc(c.id)}">Edit</button><button class="linkbtn" data-ct-del="${esc(c.id)}">Delete</button></div></div>
+        ${c.cell ? `<div class="ct-line"><span class="eyebrow">Cell</span><span class="ct-val">${esc(c.cell)}</span><button class="btn ghost small" data-copy="${esc(c.cell)}">Copy</button></div>` : ""}
+        ${c.email ? `<div class="ct-line"><span class="eyebrow">Email</span><span class="ct-val">${esc(c.email)}</span><button class="btn ghost small" data-copy="${esc(c.email)}">Copy</button></div>` : ""}
+        ${c.address ? `<div class="ct-line"><span class="eyebrow">Home</span><span class="ct-val">${esc(c.address)}</span><button class="btn ghost small" data-copy="${esc(c.address)}">Copy</button></div>` : ""}
+        ${c.note ? `<p class="meta">${esc(c.note)}</p>` : ""}
+      </article>`).join("")}</div>`
+      : `<p class="empty">No contacts yet. Add the first member below.</p>`}
+    ${editing ? "" : contactForm(null)}
+    ${list.length ? `<div class="row"><button class="linkbtn" id="ct-copy-all">Copy all contacts as text</button></div>` : ""}`;
+}
+binders.contacts = () => {
+  document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => copyText(b.dataset.copy, "Copied"));
+  document.querySelectorAll("[data-ct-edit]").forEach(b => b.onclick = () => { S.contactEdit = b.dataset.ctEdit; render(); window.scrollTo(0, 0); });
+  document.querySelectorAll("[data-ct-del]").forEach(b => b.onclick = () => confirmDelete(b, "contacts", b.dataset.ctDel));
+  const cancel = $("#ct-cancel"); if (cancel) cancel.onclick = () => { S.contactEdit = null; render(); };
+  const all = $("#ct-copy-all"); if (all) all.onclick = () => copyText(sortContacts(S.contacts).map(c => [c.name + (c.role ? " (" + c.role + ")" : ""), c.cell, c.email, c.address, c.note].filter(Boolean).join(" · ")).join("\n"), "Contacts copied");
+  $("#ct-form").onsubmit = async e => {
+    e.preventDefault();
+    const rec = { name: $("#ct-name").value.trim(), cell: $("#ct-cell").value.trim(), email: $("#ct-email").value.trim(), role: $("#ct-role").value.trim(), address: $("#ct-address").value.trim(), note: $("#ct-note").value.trim() };
+    if (!rec.name) { toast("Add a name."); $("#ct-name").focus(); return; }
+    if (!rec.cell && !rec.email) { toast("Add a cell phone or an email."); return; }
+    if (!needDb()) return;
+    try {
+      if (S.contactEdit) { await S.db.doc("contacts/" + S.contactEdit).update(rec); S.contactEdit = null; toast("Contact saved"); render(); }
+      else { await S.db.collection("contacts").add({ ...rec, createdAt: Date.now() }); ["ct-name", "ct-cell", "ct-email", "ct-role", "ct-address", "ct-note"].forEach(id => $("#" + id).value = ""); toast("Contact added"); }
+    } catch (ex) { toast(errMsg(ex)); }
+  };
+};
+
+/* ---------- calendar ---------- */
+function calendarView() {
+  const s = S.site;
+  if (S.editing === "calendar") return `<h2>Calendar</h2><div class="card edit-area">
+    <label for="ed-calendarUrl">Shared calendar link<span class="hint">From Google Calendar: Settings, your cabin calendar, then copy its public or shareable link.</span></label>
+    <input type="url" id="ed-calendarUrl" data-fresh value="${esc(s.calendarUrl)}" placeholder="https://calendar.google.com/…">
+    <label for="ed-calendarNote">Note for members</label><textarea id="ed-calendarNote" data-fresh rows="3">${esc(s.calendarNote)}</textarea>
+    <div class="row"><button class="btn" data-save="calendar">Save</button><button class="btn ghost" data-cancel>Cancel</button></div></div>`;
+  return `<div><p class="eyebrow">Members</p><h2>Calendar</h2></div>
+    <div class="card cal-hero">
+      <p>${esc(s.calendarNote)}</p>
+      ${s.calendarUrl ? `<div class="row"><a class="btn" href="${esc(s.calendarUrl)}" target="_blank" rel="noopener" style="text-decoration:none">Open the cabin calendar</a></div>`
+        : `<p class="notice">No calendar linked yet. Add the shared calendar's link so everyone can find it here.</p>`}
+    </div>
+    <button class="linkbtn" data-edit="calendar" style="justify-self:start">${s.calendarUrl ? "Change calendar link" : "Add calendar link"}</button>`;
+}
+binders.calendar = bindEditing;
+
+/* ---------- tides & moon ---------- */
+const NOAA_STATION = "8776604";
+function conditionsView() {
+  const n = `https://tidesandcurrents.noaa.gov`;
+  return `<div><p class="eyebrow">Members</p><h2>Tides &amp; Moon</h2></div>
+    <p class="lede">Check the bay before you head out, and log what you see in a fishing report.</p>
+    <div class="cond-grid">
+      <div class="card cond-card">
+        <p class="eyebrow">NOAA station ${NOAA_STATION}</p>
+        <h3>Baffin Bay gauge</h3>
+        <p>Live water level, wind, air temperature and water temperature from the NOAA station in Baffin Bay.</p>
+        <div class="row">
+          <a class="btn" href="${n}/stationhome.html?id=${NOAA_STATION}" target="_blank" rel="noopener" style="text-decoration:none">Open the station</a>
+          <a class="btn ghost" href="${n}/waterlevels.html?id=${NOAA_STATION}" target="_blank" rel="noopener" style="text-decoration:none">Water level</a>
+          <a class="btn ghost" href="${n}/met.html?id=${NOAA_STATION}" target="_blank" rel="noopener" style="text-decoration:none">Wind &amp; temps</a>
+        </div>
+      </div>
+      <div class="card cond-card">
+        <p class="eyebrow">Lunar calendar</p>
+        <h3>Tonight: ${moonPhase(Date.now())}</h3>
+        <p>Moon phases, moonrise and moonset for the coast near Corpus Christi.</p>
+        <div class="row">
+          <a class="btn" href="https://www.timeanddate.com/moon/phases/usa/corpus-christi" target="_blank" rel="noopener" style="text-decoration:none">Open the lunar calendar</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ---------- signed waivers ---------- */
+function waiversView() {
+  const q = ($("#wv-q")?.value || "").toLowerCase();
+  const list = S.waivers.filter(w => !q || [w.name, w.email, w.minors, w.invitingMember].join(" ").toLowerCase().includes(q));
+  return `<div class="row"><div><p class="eyebrow">Members</p><h2>Signed Waivers</h2></div><span class="spacer"></span>
+      ${S.downloads ? `<button class="btn ghost" id="wv-export" ${S.waivers.length ? "" : "disabled"}>Export spreadsheet (CSV)</button>` : ""}</div>
+    <p class="lede"><span class="count">${S.waivers.length}</span> on file. Every waiver guests sign on the site lands here.</p>
+    <input type="text" id="wv-q" placeholder="Search by name or email" aria-label="Search waivers">
+    ${list.length ? `<div class="tablewrap card" style="padding:4px 8px"><table>
+      <thead><tr><th>Name</th><th>Visit</th><th>Invited by</th><th>Contact</th><th>Emergency</th><th>Minors</th><th>Signed</th><th>Signature</th></tr></thead>
+      <tbody>${list.map(w => `<tr><td><strong>${esc(w.name)}</strong></td>
+        <td>${esc(w.visitDate || "")}</td>
+        <td>${esc(w.invitingMember || "")}</td>
+        <td>${esc(w.email)}${w.phone ? `<br><span class="meta">${esc(w.phone)}</span>` : ""}</td>
+        <td>${esc(w.emergency || "")}${w.emergencyPhone ? `<br><span class="meta">${esc(w.emergencyPhone)}</span>` : ""}</td>
+        <td>${esc(w.minors || "")}</td>
+        <td class="num">${esc(fmtDT(w.signedAt))}</td>
+        <td>${w.signature ? `<img src="${esc(w.signature)}" alt="Signature of ${esc(w.name)}">` : ""}</td></tr>`).join("")}</tbody></table></div>`
+      : `<p class="empty">${S.waivers.length ? "No waivers match that search." : "No waivers signed yet. Share the Sign waiver page with your guests."}</p>`}`;
+}
+binders.waivers = () => {
+  const q = $("#wv-q");
+  q.oninput = () => { const pos = q.selectionStart; render(); const n = $("#wv-q"); n.focus(); n.setSelectionRange(pos, pos); };
+  const ex = $("#wv-export");
+  if (ex) ex.onclick = async () => {
+    const cols = ["name", "visitDate", "invitingMember", "address", "cityStateZip", "phone", "email", "emergency", "emergencyPhone", "minors", "guardianPhone", "signedAt"];
+    const cell = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const rows = [cols.join(","), ...S.waivers.map(w => cols.map(c => cell(c === "signedAt" ? new Date(w.signedAt).toISOString() : w[c])).join(","))];
+    try { await S.downloads.save({ filename: "baffin-cabin-waivers.csv", data: rows.join("\n") }); } catch (e) { if (e?.code !== "cancelled") toast("The download didn't go through."); }
+  };
+};
+
+/* ---------- boot ---------- */
+render();
+(() => {
+  if (!window.firebase) return;
+  firebase.initializeApp(FIREBASE_CONFIG);
+  const db = firebase.firestore();
+  window.fbAuth = firebase.auth();
+  S.db = db; S.canWrite = true;
+  S.downloads = { save: async ({ filename, data }) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data], { type: "text/csv" })); a.download = filename; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); } };
+  const onErr = () => {};
+  // re-render only the page that shows the changed data, so nobody loses a half-filled form
+  const refresh = routes => { const r = currentRoute(); if (!S.editing && routes.includes(r) && !(r === "waiver" && sigDirty)) render(); };
+  // guests can read these two; everything else is members only
+  db.doc("config/site").onSnapshot(snap => { if (snap.exists) { S.site = { ...DEFAULT_SITE, ...snap.data() }; refresh(["welcome", "waiver", "bring", "amenities", "location", "calendar", "checklists"]); } }, onErr);
+  const sub = (coll, key, field, dir, routes) => db.collection(coll).orderBy(field, dir).onSnapshot(snap => {
+    S[key] = snap.docs.map(d => ({ id: d.id, ...d.data() })); refresh(routes);
+  }, onErr);
+  sub("interior", "interior", "createdAt", "asc", ["amenities"]);
+  let subs = [];
+  fbAuth.onAuthStateChanged(user => {
+    subs.forEach(u => u()); subs = [];
+    S.unlocked = !!user;
+    if (user) subs = [
+      sub("waivers", "waivers", "signedAt", "desc", ["waivers"]),
+      sub("posts", "posts", "createdAt", "desc", ["guestbook", "todo"]),
+      sub("groceries", "groceries", "createdAt", "asc", ["groceries"]),
+      sub("groceryLists", "groceryLists", "createdAt", "desc", ["groceries"]),
+      sub("todos", "todos", "createdAt", "asc", ["todo"]),
+      sub("photos", "photos", "createdAt", "desc", ["photos"]),
+      sub("records", "records", "createdAt", "desc", ["records"]),
+      sub("catchPhotos", "catchPhotos", "createdAt", "asc", ["guestbook"]),
+      sub("contacts", "contacts", "createdAt", "asc", ["contacts"])
+    ];
+    render();
+  });
+  render();
+})();
+</script>
+
+</html>

@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Members sign in with the shared members account (the members passcode).
+    function member() { return request.auth != null && request.auth.token.email == "members@baffin-cabin.example"; }
+
+    // Guest pages read the site settings and cabin photos.
+    match /config/{doc}   { allow read: if true;  allow write: if member(); }
+    match /interior/{doc} { allow read: if true;  allow write: if member(); }
+
+    // Guests can sign a waiver, but only members can see or change signed waivers.
+    match /waivers/{doc}  { allow create: if true; allow read, update, delete: if member(); }
+
+    // Everything else is members only.
+    match /{coll}/{doc}   { allow read, write: if member(); }
+  }
+}
