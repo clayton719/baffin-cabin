@@ -80,7 +80,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--sun); }
 .side-btn { border: 1px solid var(--ink); background: transparent; color: var(--ink); border-radius: 999px; padding: 8px 16px; font: 500 .74rem/1 var(--f-body); letter-spacing: .14em; text-transform: uppercase; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .side-btn svg { width: 14px; height: 14px; }
-@media (max-width: 820px) {
+@media (max-width: 1180px) {
   .top-in { grid-template-columns: 1fr auto; }
   .tabs { grid-column: 1 / -1; justify-content: flex-start; order: 3; margin-inline: -8px; }
 }
@@ -310,7 +310,21 @@ body.home main { padding-top: 64px; }
 .wd-bullet { margin: 0 0 0 34px; position: relative; }
 .wd-bullet::before { content: "•"; position: absolute; left: -14px; color: var(--warn); }
 .wd > .meta, .wd > .wd-line { margin-left: 0; }
-.safety { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 18px; align-items: start; margin-top: 28px; }
+.safety { columns: 2 380px; column-gap: 18px; }
+.safety > .card { break-inside: avoid; margin-bottom: 18px; }
+.em-jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.em-jump a { padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; font-size: .9rem; }
+.em-jump a:hover { border-color: var(--sea-deep); }
+.safety [id^="em-"] { scroll-margin-top: calc(var(--top-h, 64px) + 16px); }
+.wd-sub { margin: 10px 0 0; font: 600 1.25rem/1.3 var(--f-display); color: var(--sea-deep); }
+.wd-kv { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.wd-kv > span:first-child { color: var(--muted); font-size: .9rem; }
+.wd-kv a { color: var(--sea-deep); overflow-wrap: anywhere; }
+.em-strip { margin-top: 28px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; text-decoration: none; color: var(--ink); border-left: 4px solid var(--warn); }
+.em-strip > span:nth-child(2) { flex: 1 1 320px; }
+.em-strip-ico { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--warn); color: #fff; font-weight: 700; }
+.em-strip .go { color: var(--warn); font-weight: 600; white-space: nowrap; }
+.em-strip:hover .go { text-decoration: underline; }
 .sos { border-left-color: var(--warn); background: linear-gradient(var(--surface), var(--surface)) padding-box; }
 .sos h3 { color: var(--warn) !important; }
 .sos > .meta { color: var(--ink); font-size: 1rem; margin: 0 0 0 34px; }
@@ -422,13 +436,14 @@ const DEFAULT_SITE = {
   guardianText: "I am the parent or legal guardian of the minor identified above. I authorize the minor to visit and participate in activities at Baffin Bay PC1409.\n\nI acknowledge the risks described in this agreement and agree to instruct the minor to follow applicable safety rules and directions.\n\nI understand that the legal effectiveness of releases and waivers involving minors may be limited by applicable law.",
   calendarUrl: "",
   calendarNote: "Check the calendar before planning a trip, and add your dates once they're set.",
-  emergency: ["1. VHF-FM Channel 16 (preferred from a boat)", "Say “MAYDAY MAYDAY MAYDAY”, then give", "- Vessel name or description", "- Exact position (lat/long or distance from a landmark)", "- Nature of the emergency", "- Number of people on board", "Stay on the radio if you can.", "2. 911 (if you have cell service)", "Tell the dispatcher you are on the water in Baffin Bay and need Coast Guard assistance. They will transfer or notify Sector Corpus Christi.", "3. Coast Guard Sector Corpus Christi search and rescue lines (direct)", "Emergency SAR Line: 1-866-302-0587", "Command Center: 1-800-874-2143", "These are the numbers the Sector itself publishes for search-and-rescue emergencies.", "Land-side backup (if you can reach shore or cell service):", "Kleberg County Sheriff: 361-595-7870", "Kenedy County Sheriff: 361-294-5205"],
+  emergency: ["1. VHF-FM Channel 16 (preferred from a boat)", "Say “MAYDAY MAYDAY MAYDAY”, then give", "- Vessel name or description", "- Exact position (lat/long or distance from a landmark)", "- Nature of the emergency", "- Number of people on board", "Stay on the radio if you can.", "2. 911 (if you have cell service)", "Tell the dispatcher you are on the water in Baffin Bay and need Coast Guard assistance. They will transfer or notify Sector Corpus Christi.", "3. Coast Guard Sector Corpus Christi search and rescue lines (direct)", "Emergency SAR Line: (866) 302-0587", "Command Center: (800) 874-2143", "These are the numbers the Sector itself publishes for search-and-rescue emergencies.", "Land-side backup (if you can reach shore or cell service):", "Kleberg County Sheriff: (361) 595-7870", "Kenedy County Sheriff: (361) 294-5205"],
   spareKey: "In the outdoor shower, on the left as you walk in.",
+  towing: ["# TowBoatUS (BoatUS)", "Local provider: TowBoatUS Port Aransas & Corpus Christi", "Their coverage includes the Laguna Madre, Baffin Bay and the Land Cut.", "Local phone, 24/7: (361) 813-1273", "National dispatch: (800) 391-4869", "VHF: Hail “TowBoatUS” on Channel 16", "App: BoatUS App, then “Call for a Tow”", "Website: https://towboatuscorpuschristi.com/", "# Sea Tow", "Local provider: Sea Tow Corpus Christi, 4242 Laguna Shores Rd, Corpus Christi", "Local phone, 24/7: (361) 937-7328", "National dispatch (800-4-SEATOW): (800) 473-2869", "VHF: Hail “Sea Tow” on Channel 16", "App: Sea Tow App (shares your GPS)", "Website: https://seatow.com/"],
   wardens: ["Kleberg County game wardens:", "Austin Pierce: (361) 474-3176", "Brad Meloni: (361) 522-6837", "Ryan Cobb: (254) 784-5863", "Hunter Meyer: (254) 784-5888", "Kenedy County game wardens:", "Warden Duke: (361) 296-4299", "Other numbers:", "TPWD Corpus Christi Regional Office: (361) 289-5566", "Operation Game Thief, report violations 24/7: (800) 792-4263", "Kleberg County Sheriff: (361) 595-8500"]
 };
 
 const GUEST_PAGES = [
-  ["welcome", "Welcome"], ["waiver", "Sign Waiver"], ["amenities", "Amenities"], ["bring", "What To Bring"], ["location", "Getting There"]
+  ["welcome", "Welcome"], ["waiver", "Sign Waiver"], ["amenities", "Amenities"], ["bring", "What To Bring"], ["location", "Getting There"], ["emergency", "Emergency"]
 ];
 const MEMBER_PAGES = [
   ["photos", "Grip’n’Grins"], ["guestbook", "Fishing Reports"], ["records", "Fishing Records"], ["calendar", "Calendar"], ["todo", "Cabin To-Dos"], ["conditions", "Tides & Moon"], ["checklists", "Arrival & Departure"], ["groceries", "Grocery List"], ["contacts", "Contacts"], ["waivers", "Signed Waivers"]
@@ -499,7 +514,7 @@ function render() {
   $("#hero-text").textContent = S.site.welcome;
   const main = $("#main");
   if (member && !S.unlocked) { main.innerHTML = gateView(); bindGate(); return; }
-  const views = { welcome: welcomeView, waiver: waiverView, bring: bringView, amenities: amenitiesView, location: locationView,
+  const views = { welcome: welcomeView, emergency: emergencyView, waiver: waiverView, bring: bringView, amenities: amenitiesView, location: locationView,
     guestbook: guestbookView, records: recordsView, checklists: checklistsView, conditions: conditionsView, photos: photosView, groceries: groceriesView, todo: todoView, calendar: calendarView, contacts: contactsView, waivers: waiversView };
   // preserve in-progress form inputs across live re-renders
   const keep = {};
@@ -585,7 +600,7 @@ function welcomeView() {
         ${am.length ? `<ul class="amen">${am.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : `<p class="meta">Amenities coming soon.</p>`}
       </div>
     </section>
-    <div class="safety">${emergencyCard()}${wardenCard()}</div>`;
+    <a class="card em-strip" href="#emergency"><span class="em-strip-ico" aria-hidden="true">!</span><span><strong>Emergency on the water?</strong> Call 911 or hail the Coast Guard on VHF Channel 16. Coast Guard, game warden and towing numbers are on the Emergency Services page.</span><span class="go">Emergency Services</span></a>`;
 }
 binders.welcome = () => {
   bindEditing();
@@ -1594,14 +1609,21 @@ function infoLine(i) {
   if (isHeading(i)) return `<p class="eyebrow wd-head">${esc(i.replace(/:\s*$/, ""))}</p>`;
   const step = i.match(/^(\d+)\.\s+(.*)$/);
   if (step) return `<p class="wd-step"><span class="wd-num">${step[1]}</span>${esc(step[2])}</p>`;
+  if (/^#\s+/.test(i)) return `<h4 class="wd-sub">${esc(i.replace(/^#\s+/, ""))}</h4>`;
   if (/^[-*•]\s+/.test(i)) return `<p class="wd-bullet">${esc(i.replace(/^[-*•]\s+/, ""))}</p>`;
   const m = i.match(/^(.*?):\s*([+\d(][\d\s().-]{6,})$/);
-  if (!m) return `<p class="meta">${esc(i)}</p>`;
+  if (!m) {
+    const kv = i.match(/^([^:]{2,40}):\s+(.+)$/);
+    if (!kv) return `<p class="meta">${esc(i)}</p>`;
+    const url = kv[2].match(/^https?:\/\/\S+$/);
+    const val = url ? `<a href="${esc(kv[2])}" target="_blank" rel="noopener">${esc(kv[2].replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</a>` : esc(kv[2]);
+    return `<div class="wd-kv"><span>${esc(kv[1])}</span><span>${val}</span></div>`;
+  }
   return `<div class="wd-line"><span>${esc(m[1])}</span><a class="ct-val" href="tel:${esc(m[2].replace(/[^\d+]/g, ""))}">${esc(m[2])}</a><button class="btn ghost small" data-copy="${esc(m[2])}">Copy</button></div>`;
 }
 function emergencyCard() {
   if (S.editing === "emergency") return listEditor("emergency", "Emergency contacts");
-  return `<section class="card wd sos">
+  return `<section class="card wd sos" id="em-cg">
       <div class="ct-top"><div><p class="eyebrow">Priority order of contact</p><h3>Emergency · Coast Guard</h3></div>${S.unlocked ? `<button class="linkbtn" data-edit="emergency">Edit</button>` : ""}</div>
       <a class="btn sos-call" href="tel:911">Call 911</a>
       ${(S.site.emergency || []).map(infoLine).join("")}
@@ -1617,9 +1639,27 @@ function keyCard() {
       <button class="linkbtn" data-edit="spareKey">Edit</button>
     </section>`;
 }
+function towingCard() {
+  if (S.editing === "towing") return listEditor("towing", "Towing services");
+  return `<section class="card wd" id="em-towing">
+      <div class="ct-top"><div><p class="eyebrow">Breakdowns, groundings, dead batteries</p><h3>Towing</h3></div>${S.unlocked ? `<button class="linkbtn" data-edit="towing">Edit</button>` : ""}</div>
+      ${(S.site.towing || []).map(infoLine).join("")}
+    </section>`;
+}
+function emergencyView() {
+  return `<div><p class="eyebrow">Baffin Bay · Texas</p><h2>Emergency Services</h2></div>
+    <p class="lede">For anything life-threatening, call 911 or use VHF Channel 16 first. Every number below is tap-to-call.</p>
+    <nav class="em-jump" aria-label="Sections"><a href="#em-cg">Coast Guard</a><a href="#em-gw">Game Wardens</a><a href="#em-towing">Towing</a></nav>
+    <div class="safety">${emergencyCard()}${wardenCard()}${towingCard()}</div>`;
+}
+binders.emergency = () => {
+  bindEditing();
+  document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => copyText(b.dataset.copy, "Copied"));
+  document.querySelectorAll(".em-jump a").forEach(a => a.onclick = e => { e.preventDefault(); const t = document.getElementById(a.getAttribute("href").slice(1)); if (t) t.scrollIntoView({ behavior: "smooth", block: "start" }); });
+};
 function wardenCard() {
   if (S.editing === "wardens") return listEditor("wardens", "Game warden contacts");
-  return `<section class="card wd">
+  return `<section class="card wd" id="em-gw">
       <div class="ct-top"><div><p class="eyebrow">Baffin Bay area · Texas Parks &amp; Wildlife</p><h3>Game Wardens</h3></div>${S.unlocked ? `<button class="linkbtn" data-edit="wardens">Edit</button>` : ""}</div>
       ${(S.site.wardens || []).map(infoLine).join("")}
       <p class="meta">Numbers from the TPWD warden directory for Kleberg and Kenedy counties.</p>
@@ -1759,7 +1799,7 @@ render();
   // re-render only the page that shows the changed data, so nobody loses a half-filled form
   const refresh = routes => { const r = currentRoute(); if (!S.editing && routes.includes(r) && !(r === "waiver" && sigDirty)) render(); };
   // guests can read these two; everything else is members only
-  db.doc("config/site").onSnapshot(snap => { if (snap.exists) { S.site = { ...DEFAULT_SITE, ...snap.data() }; refresh(["welcome", "waiver", "bring", "amenities", "location", "calendar", "checklists", "contacts"]); } }, onErr);
+  db.doc("config/site").onSnapshot(snap => { if (snap.exists) { S.site = { ...DEFAULT_SITE, ...snap.data() }; refresh(["welcome", "waiver", "bring", "amenities", "location", "calendar", "checklists", "contacts", "emergency"]); } }, onErr);
   const sub = (coll, key, field, dir, routes) => db.collection(coll).orderBy(field, dir).onSnapshot(snap => {
     S[key] = snap.docs.map(d => ({ id: d.id, ...d.data() })); refresh(routes);
   }, onErr);
