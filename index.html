@@ -297,6 +297,16 @@ body.home main { padding-top: 64px; }
 .ct-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--sea); padding-bottom: 8px; }
 .ct-top h3 { color: var(--sea-deep); font-weight: 700; }
 .ct-line { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.wd { display: grid; gap: 8px; border-left: 4px solid var(--sea-deep); }
+.wd-head { margin-top: 6px; }
+.wd-line { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; }
+.wd-line a { color: var(--sea-deep); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.ip { display: grid; gap: 18px; margin-top: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+.ip-group { display: grid; gap: 10px; }
+.ip-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.ip-head h3 { display: flex; align-items: center; gap: 10px; }
+.ip-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgb(0 0 0 / .15); background: var(--sunk); }
+.ip-blue { background: #3b7dd8; } .ip-yellow { background: #f2c94c; } .ip-orange { background: #ef8a3c; }
 .ct-val { overflow-wrap: anywhere; user-select: all; font-variant-numeric: tabular-nums; }
 
 /* photo album */
@@ -394,7 +404,8 @@ const DEFAULT_SITE = {
   waiverText: "1. NATURE OF THE PROPERTY AND ACTIVITIES\n\nI understand that I am entering and using a remote fishing cabin/camp and related facilities associated with Baffin Bay PC1409, LLC (“Baffin Bay PC1409”).\n\nI understand that the cabin/camp is located on property owned by the State of Texas and that access to and use of the property may involve boating, docks, piers, walkways, fishing, swimming or water exposure, electrical equipment, generators, appliances, tools, cooking equipment, and other activities and equipment commonly associated with a remote fishing camp.\n\nI understand that the property and facilities are not a hotel, resort, commercial lodging establishment, or continuously supervised facility.\n\n2. ACKNOWLEDGMENT OF RISKS\n\nI understand that visiting, accessing, and using the cabin/camp and surrounding property involves inherent and other risks that can result in property damage, serious bodily injury, illness, permanent disability, drowning, electrocution, or death.\n\nI acknowledge that these risks include, but are not limited to:\n\nBOAT, DOCK AND WATER HAZARDS\n\n- Boarding or exiting boats at the dock;\n- Differences in height or movement between a boat and dock;\n- Boats moving unexpectedly because of wind, waves, wakes, tides, currents, or passenger movement;\n- Slipping, tripping, or falling while boarding or exiting a vessel;\n- Slipping, tripping, or falling on docks, decks, piers, stairs, ramps, walkways, or other surfaces;\n- Wet, slippery, uneven, deteriorated, obstructed, or unstable surfaces;\n- Falling from a dock, boat, pier, walkway, or shoreline into the water;\n- Drowning or near-drowning;\n- Contact with boats, engines, propellers, anchors, lines, cleats, pilings, ladders, or other marine equipment;\n- Strong winds, waves, wakes, tides, currents, storms, lightning, and changing weather conditions;\n- Submerged or partially submerged objects; and\n- Marine animals, fish, insects, snakes, stingrays, jellyfish, and other wildlife.\n\nELECTRICAL HAZARDS\n\nI specifically understand that the presence of electricity in or near a marine environment creates potentially serious hazards.\n\nThese hazards may include:\n\n- Electrical shock or electrocution;\n- Electrical wiring, outlets, switches, extension cords, lighting, electrical panels, breakers, transformers, generators, batteries, chargers, pumps, motors, and electrical appliances;\n- Electrical equipment located in or near wet or damp areas;\n- Equipment malfunction or electrical faults;\n- Damage, deterioration, corrosion, improper connections, or unexpected failure of electrical equipment; and\n- Electrical equipment, systems, modifications, or installations installed or maintained at the cabin.\n\nI UNDERSTAND THAT ELECTRICITY IN OR AROUND WATER CAN CAUSE SERIOUS INJURY OR DEATH.\n\nCABIN, EQUIPMENT AND APPLIANCE HAZARDS\n\nI understand that the cabin and camp may contain equipment and appliances that present risks, including:\n\n- Cooking appliances, grills, burners, stoves, ovens, refrigerators, freezers, heaters, and other appliances;\n- Generators and associated electrical or fuel systems;\n- Propane, gasoline, diesel fuel, batteries, and other combustible materials;\n- Hot surfaces, flames, steam, cooking oil, and hot liquids;\n- Carbon monoxide;\n- Tools, knives, fishing equipment, hooks, lines, and other sharp objects;\n- Pumps, motors, mechanical equipment, and moving parts;\n- Furniture, stairs, steps, ladders, doors, decking, flooring, and other structures;\n- Fire, explosion, burns, cuts, falls, electrical shock, or other injuries associated with such equipment or facilities; and\n- Equipment or appliances installed, modified, maintained, or used by members or other persons.\n\nI understand that this list cannot identify every possible hazard associated with the property or activities.\n\n3. VOLUNTARY PARTICIPATION AND ASSUMPTION OF RISK\n\nI voluntarily choose to enter, visit, stay at, and participate in activities at or associated with Baffin Bay PC1409 with knowledge of the risks described above.\n\nTO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, I KNOWINGLY AND VOLUNTARILY ASSUME THE INHERENT AND OTHER RISKS ASSOCIATED WITH ACCESSING, VISITING, STAYING AT, AND USING THE CABIN, DOCKS, BOATS, FACILITIES, EQUIPMENT, APPLIANCES, AND SURROUNDING PROPERTY, INCLUDING THE RISK OF SERIOUS BODILY INJURY, DROWNING, ELECTROCUTION, PERMANENT DISABILITY, AND DEATH.\n\n4. RELEASE AND WAIVER OF LIABILITY\n\nTO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, I RELEASE AND WAIVE CLAIMS AGAINST BAFFIN BAY PC1409, LLC, ITS MEMBERS, MANAGERS, OWNERS, OFFICERS, EMPLOYEES, AGENTS, REPRESENTATIVES, INVITING MEMBERS, AND INSURERS (COLLECTIVELY, THE “RELEASED PARTIES”) FOR PERSONAL INJURY, DEATH, OR PROPERTY DAMAGE ARISING FROM OR RELATED TO MY ACCESS TO, PRESENCE AT, OR USE OF THE CABIN, CAMP, DOCKS, BOATS, FACILITIES, EQUIPMENT, APPLIANCES, OR SURROUNDING PROPERTY, INCLUDING CLAIMS ARISING FROM THE ORDINARY NEGLIGENCE OF A RELEASED PARTY, TO THE EXTENT SUCH CLAIMS MAY LAWFULLY BE RELEASED.\n\nThis release is intended to include, to the fullest extent permitted by applicable law, injuries associated with:\n\n- Boarding or exiting a boat;\n- Slipping, tripping, or falling on a dock, pier, deck, walkway, stairs, or cabin floor;\n- Falling into the water;\n- Drowning or near-drowning;\n- Electrical shock or electrocution;\n- Use or malfunction of electrical systems or equipment;\n- Generators, batteries, chargers, pumps, and related equipment;\n- Cooking equipment, grills, appliances, and other cabin equipment;\n- Fire, burns, carbon monoxide, or fuel-related hazards;\n- Fishing and boating activities; and\n- Other conditions or equipment located at or associated with the cabin or camp.\n\nThis release does not waive claims that cannot legally be waived under applicable law.\n\n5. GUEST RESPONSIBILITIES AND SAFETY RULES\n\nAs a condition of being a guest, I agree to exercise reasonable care for my own safety and the safety of others.\n\nI agree to:\n\n- Use caution while boarding and exiting boats;\n- Use available handrails, handholds, ladders, and other safety equipment as appropriate;\n- Keep docks, walkways, stairs, and exits reasonably clear;\n- Use particular caution on wet or slippery surfaces;\n- Wear appropriate footwear around the cabin, dock, and boats;\n- Wear a personal flotation device when required by law, requested by a vessel operator, or appropriate for conditions;\n- Stay clear of boat propellers and engines;\n- Not enter restricted electrical, mechanical, generator, or equipment areas unless authorized;\n- Not modify, repair, disconnect, bypass, or otherwise alter electrical or mechanical equipment;\n- Not operate equipment or appliances that I do not understand how to operate safely;\n- Immediately report any apparent electrical problem, damaged equipment, unsafe condition, or other hazard to a member of Baffin Bay PC1409;\n- Use reasonable caution around grills, cooking equipment, generators, fuel, batteries, and other equipment;\n- Follow reasonable safety instructions given by members or persons responsible for boats, equipment, or the property; and\n- Refrain from reckless or dangerous behavior.\n\n6. BOAT OPERATOR’S AUTHORITY\n\nWhenever I am aboard a boat traveling to, from, or in connection with the camp, I understand that the person operating or captaining that vessel is in charge of the vessel and has final authority concerning its safe operation.\n\nI agree to promptly follow the boat operator’s instructions concerning boarding, exiting, seating, movement aboard the vessel, personal flotation devices, weather conditions, navigation, emergency procedures, and other safety matters.\n\nI understand that boarding and exiting a boat at a dock can be particularly hazardous because the boat and dock may move independently and unexpectedly.\n\n7. ALCOHOL AND IMPAIRMENT\n\nI understand that consuming alcohol can substantially increase the risks associated with docks, boats, water, stairs, cooking equipment, electrical equipment, and other activities at the camp.\n\nI accept responsibility for my own consumption and conduct and agree not to operate boats, electrical equipment, generators, vehicles, or other potentially hazardous equipment while impaired.\n\n8. MEDICAL EMERGENCIES AND REMOTE LOCATION\n\nI understand that the cabin/camp may be located some distance from hospitals, emergency medical services, law enforcement, fire departments, or other emergency services.\n\nEmergency response and transportation may therefore take longer than they would in an urban location.\n\nIf I become injured or ill and am unable to make decisions for myself, I authorize reasonable emergency medical assistance to be requested on my behalf.\n\nI understand that I am responsible for medical expenses incurred on my behalf except as otherwise required by applicable law.\n\n9. PERSONAL PROPERTY\n\nI understand that Baffin Bay PC1409 is not responsible for safeguarding my personal belongings.\n\nTo the extent permitted by law, I accept the risk of loss or damage to personal property resulting from water, weather, theft, fire, equipment failure, boating activities, or other conditions associated with the camp.\n\n10. APPLICABLE LAW AND SEVERABILITY\n\nThis agreement is intended to be interpreted and enforced in accordance with applicable Texas law and, when applicable, federal maritime law.\n\nIf any provision of this agreement is determined to be invalid or unenforceable, the remaining provisions shall remain effective to the fullest extent permitted by law.\n\n11. GUEST ACKNOWLEDGMENT\n\nI ACKNOWLEDGE THAT I HAVE READ THIS AGREEMENT CAREFULLY AND UNDERSTAND IT.\n\nI UNDERSTAND THAT VISITING AND USING THE BAFFIN BAY PC1409 CABIN, DOCKS, BOATS, EQUIPMENT, APPLIANCES, AND RELATED FACILITIES INVOLVES RISKS THAT INCLUDE SERIOUS INJURY, DROWNING, ELECTROCUTION, PERMANENT DISABILITY, AND DEATH.\n\nI UNDERSTAND THAT THIS AGREEMENT CONTAINS AN ASSUMPTION OF RISK AND A RELEASE AND WAIVER OF CERTAIN LEGAL RIGHTS, INCLUDING CERTAIN CLAIMS ARISING FROM ORDINARY NEGLIGENCE.\n\nI voluntarily agree to these terms as a condition of entering and using the property and facilities associated with Baffin Bay PC1409, LLC.",
   guardianText: "I am the parent or legal guardian of the minor identified above. I authorize the minor to visit and participate in activities at Baffin Bay PC1409.\n\nI acknowledge the risks described in this agreement and agree to instruct the minor to follow applicable safety rules and directions.\n\nI understand that the legal effectiveness of releases and waivers involving minors may be limited by applicable law.",
   calendarUrl: "",
-  calendarNote: "Check the calendar before planning a trip, and add your dates once they're set."
+  calendarNote: "Check the calendar before planning a trip, and add your dates once they're set.",
+  wardens: ["Kleberg County game wardens:", "Austin Pierce: 361-474-3176", "Brad Meloni: 361-522-6837", "Ryan Cobb: (254) 784-5863", "Hunter Meyer: (254) 784-5888", "Kenedy County game wardens:", "Warden Duke: (361) 296-4299", "Other numbers:", "TPWD Corpus Christi Regional Office: 361-289-5566", "Operation Game Thief, report violations 24/7: 1-800-792-4263", "Kleberg County Sheriff: 361-595-8500"]
 };
 
 const GUEST_PAGES = [
@@ -407,7 +418,7 @@ const MEMBER_PAGES = [
 /* ---------- state ---------- */
 const S = {
   site: { ...DEFAULT_SITE },
-  waivers: [], contacts: [], contactEdit: null, posts: [], groceries: [], todos: [], photos: [], lightbox: -1,
+  waivers: [], contacts: [], contactEdit: null, ctGroup: "", posts: [], groceries: [], todos: [], photos: [], lightbox: -1,
   db: null, canWrite: null, downloads: null,
   unlocked: false, editing: null,
   postKind: "update", todoKind: "buy", photoEdit: false, gList: "members", interior: [], amLb: -1, slide: 0, showPaused: false, importOpen: false, importPreview: null,
@@ -1521,13 +1532,14 @@ binders.todo = () => {
 function contactForm(c) {
   const v = c || {};
   return `<form class="card" id="ct-form" style="display:grid;gap:14px">
-    <h3>${c ? "Edit contact" : "Add a member"}</h3>
+    <h3>${c ? "Edit contact" : "Add a contact"}</h3>
     <div class="fields">
       <label for="ct-name">Name<input type="text" id="ct-name" data-fresh value="${esc(v.name || "")}" autocomplete="off"></label>
       <label for="ct-cell">Cell phone<input type="tel" id="ct-cell" data-fresh value="${esc(v.cell || "")}" autocomplete="off"></label>
       <label for="ct-email">Email<input type="email" id="ct-email" data-fresh value="${esc(v.email || "")}" autocomplete="off"></label>
       <label for="ct-role">Role<span class="hint">Optional, e.g. Foreman.</span><input type="text" id="ct-role" data-fresh value="${esc(v.role || "")}" autocomplete="off"></label>
     </div>
+    <label for="ct-group">Section<select id="ct-group" data-fresh>${CT_GROUPS.map(([k, l]) => `<option value="${k}"${(S.ctGroup || "") === k ? " selected" : ""}>${l}</option>`).join("")}</select></label>
     <label for="ct-address">Home address<input type="text" id="ct-address" data-fresh value="${esc(v.address || "")}" autocomplete="off"></label>
     <label for="ct-note">Note<span class="hint">Optional, e.g. spouse's name or best time to call.</span><input type="text" id="ct-note" data-fresh value="${esc(v.note || "")}" autocomplete="off"></label>
     <div class="row"><button class="btn" type="submit">${c ? "Save changes" : "Add contact"}</button>${c ? `<button class="btn ghost" type="button" id="ct-cancel">Cancel</button>` : ""}</div>
@@ -1537,39 +1549,70 @@ function contactForm(c) {
 function sortContacts(cs) {
   return [...cs].sort((a, b) => (b.role ? 1 : 0) - (a.role ? 1 : 0) || String(a.name || "").localeCompare(String(b.name || "")));
 }
-function contactsView() {
-  const list = sortContacts(S.contacts);
-  const editing = S.contactEdit && S.contacts.find(c => c.id === S.contactEdit);
-  return `<div><p class="eyebrow">Members</p><h2>Member Contacts</h2></div>
-    <p class="lede">Everyone's email and cell in one place. Only members can see this page.</p>
-    ${editing ? contactForm(editing) : ""}
-    ${list.length ? `<div class="ct-list">${list.map(c => `<article class="card ct">
+// "" is a cabin member; the rest show under Island Partners
+const CT_GROUPS = [["", "Member Contacts"], ["blue", "Blue Cabin"], ["yellow", "Yellow Cabin"], ["orange", "Orange Cabin"], ["others", "Others"]];
+function ctCard(c) {
+  return `<article class="card ct">
         <div class="ct-top"><div class="row" style="gap:8px"><h3>${esc(c.name || "Unnamed")}</h3>${c.role ? `<span class="tag fish">${esc(c.role)}</span>` : ""}</div>
           <div class="row"><button class="linkbtn" data-ct-edit="${esc(c.id)}">Edit</button><button class="linkbtn" data-ct-del="${esc(c.id)}">Delete</button></div></div>
         ${c.cell ? `<div class="ct-line"><span class="eyebrow">Cell</span><span class="ct-val">${esc(c.cell)}</span><button class="btn ghost small" data-copy="${esc(c.cell)}">Copy</button></div>` : ""}
         ${c.email ? `<div class="ct-line"><span class="eyebrow">Email</span><span class="ct-val">${esc(c.email)}</span><button class="btn ghost small" data-copy="${esc(c.email)}">Copy</button></div>` : ""}
         ${c.address ? `<div class="ct-line"><span class="eyebrow">Home</span><span class="ct-val">${esc(c.address)}</span><button class="btn ghost small" data-copy="${esc(c.address)}">Copy</button></div>` : ""}
         ${c.note ? `<p class="meta">${esc(c.note)}</p>` : ""}
-      </article>`).join("")}</div>`
-      : `<p class="empty">No contacts yet. Add the first member below.</p>`}
+      </article>`;
+}
+function wardenCard() {
+  if (S.editing === "wardens") return listEditor("wardens", "Game warden contacts");
+  const items = S.site.wardens || [];
+  const line = i => {
+    const m = i.match(/^(.*?):\s*([+\d(][\d\s().-]{6,})$/);
+    if (!m) return `<p class="meta">${esc(i)}</p>`;
+    return `<div class="wd-line"><span>${esc(m[1])}</span><a class="ct-val" href="tel:${esc(m[2].replace(/[^\d+]/g, ""))}">${esc(m[2])}</a><button class="btn ghost small" data-copy="${esc(m[2])}">Copy</button></div>`;
+  };
+  return `<section class="card wd">
+      <div class="ct-top"><div><p class="eyebrow">Baffin Bay area · Texas Parks &amp; Wildlife</p><h3>Game Wardens</h3></div><button class="linkbtn" data-edit="wardens">Edit</button></div>
+      ${items.map(i => isHeading(i) ? `<p class="eyebrow wd-head">${esc(i.replace(/:\s*$/, ""))}</p>` : line(i)).join("")}
+      <p class="meta">For an emergency on the water, call 911 first. Numbers from the TPWD warden directory for Kleberg and Kenedy counties.</p>
+    </section>`;
+}
+function contactsView() {
+  const list = sortContacts(S.contacts);
+  const editing = S.contactEdit && S.contacts.find(c => c.id === S.contactEdit);
+  const members = list.filter(c => !c.group);
+  return `<div><p class="eyebrow">Members</p><h2>Member Contacts</h2></div>
+    <p class="lede">Everyone's email and cell in one place. Only members can see this page.</p>
+    ${wardenCard()}
+    ${editing ? contactForm(editing) : ""}
+    ${members.length ? `<div class="ct-list">${members.map(ctCard).join("")}</div>`
+      : `<p class="empty">No member contacts yet. Add the first one below.</p>`}
+    <div class="ip"><div><p class="eyebrow">Neighbors</p><h2>Island Partners</h2></div>
+      ${CT_GROUPS.slice(1).map(([k, l]) => {
+        const g = list.filter(c => c.group === k);
+        return `<div class="ip-group"><div class="ip-head"><h3><span class="ip-dot ip-${k}"></span>${l}</h3><button class="linkbtn" data-ct-add="${k}">Add to ${l}</button></div>
+          ${g.length ? `<div class="ct-list">${g.map(ctCard).join("")}</div>` : `<p class="meta">No one added yet.</p>`}</div>`;
+      }).join("")}
+    </div>
     ${editing ? "" : contactForm(null)}
     ${list.length ? `<div class="row"><button class="linkbtn" id="ct-copy-all">Copy all contacts as text</button></div>` : ""}`;
 }
 binders.contacts = () => {
+  bindEditing();
+  document.querySelectorAll("[data-ct-add]").forEach(b => b.onclick = () => { S.ctGroup = b.dataset.ctAdd; S.contactEdit = null; render(); const f = $("#ct-form"); if (f) { f.scrollIntoView({ behavior: "smooth", block: "start" }); $("#ct-name").focus({ preventScroll: true }); } });
   document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => copyText(b.dataset.copy, "Copied"));
-  document.querySelectorAll("[data-ct-edit]").forEach(b => b.onclick = () => { S.contactEdit = b.dataset.ctEdit; render(); window.scrollTo(0, 0); });
+  document.querySelectorAll("[data-ct-edit]").forEach(b => b.onclick = () => { S.contactEdit = b.dataset.ctEdit; S.ctGroup = (S.contacts.find(c => c.id === b.dataset.ctEdit) || {}).group || ""; render(); window.scrollTo(0, 0); });
   document.querySelectorAll("[data-ct-del]").forEach(b => b.onclick = () => confirmDelete(b, "contacts", b.dataset.ctDel));
-  const cancel = $("#ct-cancel"); if (cancel) cancel.onclick = () => { S.contactEdit = null; render(); };
-  const all = $("#ct-copy-all"); if (all) all.onclick = () => copyText(sortContacts(S.contacts).map(c => [c.name + (c.role ? " (" + c.role + ")" : ""), c.cell, c.email, c.address, c.note].filter(Boolean).join(" · ")).join("\n"), "Contacts copied");
+  $("#ct-group").onchange = e => { S.ctGroup = e.target.value; };
+  const cancel = $("#ct-cancel"); if (cancel) cancel.onclick = () => { S.contactEdit = null; S.ctGroup = ""; render(); };
+  const all = $("#ct-copy-all"); if (all) all.onclick = () => copyText(sortContacts(S.contacts).map(c => [c.name + (c.role ? " (" + c.role + ")" : "") + (c.group ? " [" + CT_GROUPS.find(([k]) => k === c.group)[1] + "]" : ""), c.cell, c.email, c.address, c.note].filter(Boolean).join(" · ")).join("\n"), "Contacts copied");
   $("#ct-form").onsubmit = async e => {
     e.preventDefault();
-    const rec = { name: $("#ct-name").value.trim(), cell: $("#ct-cell").value.trim(), email: $("#ct-email").value.trim(), role: $("#ct-role").value.trim(), address: $("#ct-address").value.trim(), note: $("#ct-note").value.trim() };
+    const rec = { name: $("#ct-name").value.trim(), cell: $("#ct-cell").value.trim(), email: $("#ct-email").value.trim(), role: $("#ct-role").value.trim(), group: $("#ct-group").value, address: $("#ct-address").value.trim(), note: $("#ct-note").value.trim() };
     if (!rec.name) { toast("Add a name."); $("#ct-name").focus(); return; }
     if (!rec.cell && !rec.email) { toast("Add a cell phone or an email."); return; }
     if (!needDb()) return;
     try {
-      if (S.contactEdit) { await S.db.doc("contacts/" + S.contactEdit).update(rec); S.contactEdit = null; toast("Contact saved"); render(); }
-      else { await S.db.collection("contacts").add({ ...rec, createdAt: Date.now() }); ["ct-name", "ct-cell", "ct-email", "ct-role", "ct-address", "ct-note"].forEach(id => $("#" + id).value = ""); toast("Contact added"); }
+      if (S.contactEdit) { await S.db.doc("contacts/" + S.contactEdit).update(rec); S.contactEdit = null; S.ctGroup = ""; toast("Contact saved"); render(); }
+      else { await S.db.collection("contacts").add({ ...rec, createdAt: Date.now() }); ["ct-name", "ct-cell", "ct-email", "ct-role", "ct-address", "ct-note"].forEach(id => $("#" + id).value = ""); S.ctGroup = ""; toast("Contact added"); render(); }
     } catch (ex) { toast(errMsg(ex)); }
   };
 };
@@ -1665,7 +1708,7 @@ render();
   // re-render only the page that shows the changed data, so nobody loses a half-filled form
   const refresh = routes => { const r = currentRoute(); if (!S.editing && routes.includes(r) && !(r === "waiver" && sigDirty)) render(); };
   // guests can read these two; everything else is members only
-  db.doc("config/site").onSnapshot(snap => { if (snap.exists) { S.site = { ...DEFAULT_SITE, ...snap.data() }; refresh(["welcome", "waiver", "bring", "amenities", "location", "calendar", "checklists"]); } }, onErr);
+  db.doc("config/site").onSnapshot(snap => { if (snap.exists) { S.site = { ...DEFAULT_SITE, ...snap.data() }; refresh(["welcome", "waiver", "bring", "amenities", "location", "calendar", "checklists", "contacts"]); } }, onErr);
   const sub = (coll, key, field, dir, routes) => db.collection(coll).orderBy(field, dir).onSnapshot(snap => {
     S[key] = snap.docs.map(d => ({ id: d.id, ...d.data() })); refresh(routes);
   }, onErr);
