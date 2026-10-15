@@ -302,6 +302,13 @@ body.home main { padding-top: 64px; }
 .ct-line { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
 .wd { display: grid; gap: 8px; border-left: 4px solid var(--sea-deep); }
 .wd-head { margin-top: 6px; }
+.diesel { display: grid; gap: 12px; border-left: 4px solid var(--sea-deep); margin-bottom: 18px; }
+.diesel-now { margin: 4px 0 0; } .diesel-now strong { font: 600 1.6rem/1 var(--f-display); color: var(--sea-deep); }
+.diesel-form { display: grid; grid-template-columns: minmax(0, 160px) minmax(0, 220px) auto; gap: 12px; align-items: end; }
+@media (max-width: 560px) { .diesel-form { grid-template-columns: 1fr 1fr; } .diesel-form .btn { grid-column: 1 / -1; } }
+.diesel-log { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+.diesel-log li { display: flex; gap: 12px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); }
+.diesel-log li .linkbtn { margin-left: auto; }
 .key-card { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 16px; align-items: center; background: var(--sun-soft); border-left: 4px solid var(--sun); }
 .key-ico { width: 44px; height: 44px; color: var(--sun); }
 .key-where { margin: 2px 0; font: 600 1.35rem/1.3 var(--f-display); color: var(--ink); }
@@ -452,7 +459,7 @@ const MEMBER_PAGES = [
 /* ---------- state ---------- */
 const S = {
   site: { ...DEFAULT_SITE },
-  waivers: [], contacts: [], contactEdit: null, ctGroup: "", posts: [], groceries: [], todos: [], photos: [], lightbox: -1,
+  waivers: [], contacts: [], contactEdit: null, ctGroup: "", posts: [], groceries: [], todos: [], diesel: [], photos: [], lightbox: -1,
   db: null, canWrite: null, downloads: null,
   unlocked: false, editing: null,
   postKind: "update", todoKind: "buy", photoEdit: false, gList: "members", interior: [], amLb: -1, slide: 0, showPaused: false, importOpen: false, importPreview: null,
@@ -1531,6 +1538,21 @@ binders.groceries = () => {
   bindChecklist("groceries", curGroceries);
 };
 
+// diesel tank readings (db `diesel` {inches, by, createdAt}), newest first
+function dieselCard() {
+  const [last, ...older] = S.diesel;
+  return `<section class="card diesel" aria-label="Diesel level">
+      <div class="ct-top"><div><p class="eyebrow">Generator fuel</p><h3>Diesel Level</h3></div>
+        ${last ? `<p class="diesel-now"><strong>${esc(String(last.inches))}″</strong> remaining <span class="meta">· ${esc(fmtDate(last.createdAt))} by ${esc(last.by || "a member")}</span></p>` : `<p class="meta">No readings yet.</p>`}</div>
+      <form class="diesel-form" id="d-form">
+        <label for="d-in">Inches remaining<input type="number" id="d-in" inputmode="decimal" min="0" step="0.25" placeholder="e.g. 18"></label>
+        <label for="d-by">Your name<input type="text" id="d-by" value="${esc(myName())}" autocomplete="name"></label>
+        <button class="btn" type="submit">Log reading</button>
+      </form>
+      ${older.length ? `<details><summary class="meta">Earlier readings (${older.length})</summary><ul class="diesel-log">${older.map(d => `<li><span><strong>${esc(String(d.inches))}″</strong></span><span class="meta">${esc(fmtDate(d.createdAt))} · ${esc(d.by || "a member")}</span><button class="linkbtn" data-d-del="${esc(d.id)}">Delete</button></li>`).join("")}</ul></details>` : ""}
+      ${last ? `<button class="linkbtn" style="justify-self:start" data-d-del="${esc(last.id)}">Delete latest reading</button>` : ""}
+    </section>`;
+}
 function todoView() {
   const ups = S.posts.filter(p => p.kind === "update");
   const upd = S.todoKind === "updates";
@@ -1539,6 +1561,7 @@ function todoView() {
   const openBuy = S.todos.filter(t => t.kind === "buy" && !t.done).length, openWork = S.todos.filter(t => t.kind === "work" && !t.done).length;
   return `<div><p class="eyebrow">Members</p><h2>Cabin To-Dos</h2></div>
     <p class="lede">Household items to buy, work that needs doing around the place, and cabin updates.</p>
+    ${dieselCard()}
     ${upd ? "" : nameNudge()}
     <div class="kind-switch" role="group" aria-label="List">
       <button type="button" data-tk="buy" aria-pressed="${buy}">Items To Buy · ${openBuy}</button>
@@ -1552,6 +1575,17 @@ function todoView() {
     ${checklist("todos", items, buy ? "Nothing to buy right now." : "No work on the list right now.")}`}`;
 }
 binders.todo = () => {
+  document.querySelectorAll("[data-d-del]").forEach(b => b.onclick = () => confirmDelete(b, "diesel", b.dataset.dDel));
+  $("#d-form").onsubmit = async e => {
+    e.preventDefault();
+    const inches = parseFloat($("#d-in").value), by = $("#d-by").value.trim();
+    if (!(inches >= 0)) { toast("Enter the inches remaining."); $("#d-in").focus(); return; }
+    if (!by) { toast("Add your name."); $("#d-by").focus(); return; }
+    if (!needDb()) return;
+    rememberName(by);
+    try { await S.db.collection("diesel").add({ inches, by, createdAt: Date.now() }); $("#d-in").value = ""; toast("Diesel level logged"); }
+    catch (ex) { toast(errMsg(ex)); }
+  };
   bindNameNudge();
   document.querySelectorAll("[data-tk]").forEach(b => b.onclick = () => { S.todoKind = b.dataset.tk; render(); });
   if (S.todoKind === "updates") {
@@ -1814,6 +1848,7 @@ render();
       sub("groceries", "groceries", "createdAt", "asc", ["groceries"]),
       sub("groceryLists", "groceryLists", "createdAt", "desc", ["groceries"]),
       sub("todos", "todos", "createdAt", "asc", ["todo"]),
+      sub("diesel", "diesel", "createdAt", "desc", ["todo"]),
       sub("photos", "photos", "createdAt", "desc", ["photos"]),
       sub("records", "records", "createdAt", "desc", ["records"]),
       sub("catchPhotos", "catchPhotos", "createdAt", "asc", ["guestbook"]),
