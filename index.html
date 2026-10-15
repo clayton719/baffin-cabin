@@ -310,7 +310,8 @@ body.home main { padding-top: 64px; }
 .wd-bullet { margin: 0 0 0 34px; position: relative; }
 .wd-bullet::before { content: "•"; position: absolute; left: -14px; color: var(--warn); }
 .wd > .meta, .wd > .wd-line { margin-left: 0; }
-.sos { margin-top: 28px; max-width: 760px; width: 100%; justify-self: center; border-left-color: var(--warn); background: linear-gradient(var(--surface), var(--surface)) padding-box; }
+.safety { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 18px; align-items: start; margin-top: 28px; }
+.sos { border-left-color: var(--warn); background: linear-gradient(var(--surface), var(--surface)) padding-box; }
 .sos h3 { color: var(--warn) !important; }
 .sos > .meta { color: var(--ink); font-size: 1rem; margin: 0 0 0 34px; }
 .wd-bullet::before { font-size: 1.3em; line-height: 1; }
@@ -584,7 +585,7 @@ function welcomeView() {
         ${am.length ? `<ul class="amen">${am.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : `<p class="meta">Amenities coming soon.</p>`}
       </div>
     </section>
-    ${emergencyCard()}`;
+    <div class="safety">${emergencyCard()}${wardenCard()}</div>`;
 }
 binders.welcome = () => {
   bindEditing();
@@ -1619,7 +1620,7 @@ function keyCard() {
 function wardenCard() {
   if (S.editing === "wardens") return listEditor("wardens", "Game warden contacts");
   return `<section class="card wd">
-      <div class="ct-top"><div><p class="eyebrow">Baffin Bay area · Texas Parks &amp; Wildlife</p><h3>Game Wardens</h3></div><button class="linkbtn" data-edit="wardens">Edit</button></div>
+      <div class="ct-top"><div><p class="eyebrow">Baffin Bay area · Texas Parks &amp; Wildlife</p><h3>Game Wardens</h3></div>${S.unlocked ? `<button class="linkbtn" data-edit="wardens">Edit</button>` : ""}</div>
       ${(S.site.wardens || []).map(infoLine).join("")}
       <p class="meta">Numbers from the TPWD warden directory for Kleberg and Kenedy counties.</p>
     </section>`;
