@@ -299,6 +299,16 @@ body.home main { padding-top: 64px; }
 .ct-line { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
 .wd { display: grid; gap: 8px; border-left: 4px solid var(--sea-deep); }
 .wd-head { margin-top: 6px; }
+.wd-step { display: flex; gap: 10px; align-items: baseline; margin: 10px 0 0; font-weight: 600; }
+.wd-num { flex: none; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--warn); color: #fff; font-size: .8rem; }
+.wd-bullet { margin: 0 0 0 34px; position: relative; }
+.wd-bullet::before { content: "•"; position: absolute; left: -14px; color: var(--warn); }
+.wd > .meta, .wd > .wd-line { margin-left: 0; }
+.sos { margin-top: 28px; max-width: 760px; width: 100%; justify-self: center; border-left-color: var(--warn); background: linear-gradient(var(--surface), var(--surface)) padding-box; }
+.sos h3 { color: var(--warn) !important; }
+.sos > .meta { color: var(--ink); font-size: 1rem; margin: 0 0 0 34px; }
+.wd-bullet::before { font-size: 1.3em; line-height: 1; }
+.sos-call { justify-self: start; background: var(--warn); border-color: var(--warn); color: #fff; }
 .wd-line { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; }
 .wd-line a { color: var(--sea-deep); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .ip { display: grid; gap: 18px; margin-top: 18px; padding-top: 22px; border-top: 1px solid var(--line); }
@@ -405,6 +415,7 @@ const DEFAULT_SITE = {
   guardianText: "I am the parent or legal guardian of the minor identified above. I authorize the minor to visit and participate in activities at Baffin Bay PC1409.\n\nI acknowledge the risks described in this agreement and agree to instruct the minor to follow applicable safety rules and directions.\n\nI understand that the legal effectiveness of releases and waivers involving minors may be limited by applicable law.",
   calendarUrl: "",
   calendarNote: "Check the calendar before planning a trip, and add your dates once they're set.",
+  emergency: ["1. VHF-FM Channel 16 (preferred from a boat)", "Say “MAYDAY MAYDAY MAYDAY”, then give", "- Vessel name or description", "- Exact position (lat/long or distance from a landmark)", "- Nature of the emergency", "- Number of people on board", "Stay on the radio if you can.", "2. 911 (if you have cell service)", "Tell the dispatcher you are on the water in Baffin Bay and need Coast Guard assistance. They will transfer or notify Sector Corpus Christi.", "3. Coast Guard Sector Corpus Christi search and rescue lines (direct)", "Emergency SAR Line: 1-866-302-0587", "Command Center: 1-800-874-2143", "These are the numbers the Sector itself publishes for search-and-rescue emergencies.", "Land-side backup (if you can reach shore or cell service):", "Kleberg County Sheriff: 361-595-7870", "Kenedy County Sheriff: 361-294-5205"],
   wardens: ["Kleberg County game wardens:", "Austin Pierce: 361-474-3176", "Brad Meloni: 361-522-6837", "Ryan Cobb: (254) 784-5863", "Hunter Meyer: (254) 784-5888", "Kenedy County game wardens:", "Warden Duke: (361) 296-4299", "Other numbers:", "TPWD Corpus Christi Regional Office: 361-289-5566", "Operation Game Thief, report violations 24/7: 1-800-792-4263", "Kleberg County Sheriff: 361-595-8500"]
 };
 
@@ -563,9 +574,13 @@ function welcomeView() {
         <div class="sec-head"><p class="eyebrow">At the cabin</p><h2>Waiting for you on the bay</h2><p class="lede">Bring the groceries and the gear. Here's what's already there.</p><a href="#amenities" class="btn ghost small" style="justify-self:start;margin-top:8px">All amenities</a></div>
         ${am.length ? `<ul class="amen">${am.map(i => `<li>${esc(i)}</li>`).join("")}</ul>` : `<p class="meta">Amenities coming soon.</p>`}
       </div>
-    </section>`;
+    </section>
+    ${emergencyCard()}`;
 }
-binders.welcome = bindEditing;
+binders.welcome = () => {
+  bindEditing();
+  document.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => copyText(b.dataset.copy, "Copied"));
+};
 
 function listPage(key, eyebrow, title, intro, before = "") {
   if (S.editing === key) return `<h2>${title}</h2>${listEditor(key, title)}`;
@@ -1561,18 +1576,30 @@ function ctCard(c) {
         ${c.note ? `<p class="meta">${esc(c.note)}</p>` : ""}
       </article>`;
 }
+// one line of an editable contact card: "Heading:", "1. Step", "- bullet", "Label: phone", or plain text
+function infoLine(i) {
+  if (isHeading(i)) return `<p class="eyebrow wd-head">${esc(i.replace(/:\s*$/, ""))}</p>`;
+  const step = i.match(/^(\d+)\.\s+(.*)$/);
+  if (step) return `<p class="wd-step"><span class="wd-num">${step[1]}</span>${esc(step[2])}</p>`;
+  if (/^[-*•]\s+/.test(i)) return `<p class="wd-bullet">${esc(i.replace(/^[-*•]\s+/, ""))}</p>`;
+  const m = i.match(/^(.*?):\s*([+\d(][\d\s().-]{6,})$/);
+  if (!m) return `<p class="meta">${esc(i)}</p>`;
+  return `<div class="wd-line"><span>${esc(m[1])}</span><a class="ct-val" href="tel:${esc(m[2].replace(/[^\d+]/g, ""))}">${esc(m[2])}</a><button class="btn ghost small" data-copy="${esc(m[2])}">Copy</button></div>`;
+}
+function emergencyCard() {
+  if (S.editing === "emergency") return listEditor("emergency", "Emergency contacts");
+  return `<section class="card wd sos">
+      <div class="ct-top"><div><p class="eyebrow">Priority order of contact</p><h3>Emergency · Coast Guard</h3></div>${S.unlocked ? `<button class="linkbtn" data-edit="emergency">Edit</button>` : ""}</div>
+      <a class="btn sos-call" href="tel:911">Call 911</a>
+      ${(S.site.emergency || []).map(infoLine).join("")}
+    </section>`;
+}
 function wardenCard() {
   if (S.editing === "wardens") return listEditor("wardens", "Game warden contacts");
-  const items = S.site.wardens || [];
-  const line = i => {
-    const m = i.match(/^(.*?):\s*([+\d(][\d\s().-]{6,})$/);
-    if (!m) return `<p class="meta">${esc(i)}</p>`;
-    return `<div class="wd-line"><span>${esc(m[1])}</span><a class="ct-val" href="tel:${esc(m[2].replace(/[^\d+]/g, ""))}">${esc(m[2])}</a><button class="btn ghost small" data-copy="${esc(m[2])}">Copy</button></div>`;
-  };
   return `<section class="card wd">
       <div class="ct-top"><div><p class="eyebrow">Baffin Bay area · Texas Parks &amp; Wildlife</p><h3>Game Wardens</h3></div><button class="linkbtn" data-edit="wardens">Edit</button></div>
-      ${items.map(i => isHeading(i) ? `<p class="eyebrow wd-head">${esc(i.replace(/:\s*$/, ""))}</p>` : line(i)).join("")}
-      <p class="meta">For an emergency on the water, call 911 first. Numbers from the TPWD warden directory for Kleberg and Kenedy counties.</p>
+      ${(S.site.wardens || []).map(infoLine).join("")}
+      <p class="meta">Numbers from the TPWD warden directory for Kleberg and Kenedy counties.</p>
     </section>`;
 }
 function contactsView() {
