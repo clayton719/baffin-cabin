@@ -697,6 +697,17 @@ binders.amenities = () => {
   });
 };
 
+const WIND_URL = "https://sailflow.com/spot/26196";
+function windCard() {
+  return `<div class="card cond-card">
+        <p class="eyebrow">Wind forecast</p>
+        <h3>Wind</h3>
+        <p>Live wind speed, gusts and direction, plus the forecast for the days ahead, from SailFlow.</p>
+        <div class="row">
+          <a class="btn" href="${WIND_URL}" target="_blank" rel="noopener" style="text-decoration:none">Open the wind forecast</a>
+        </div>
+      </div>`;
+}
 function locationView() {
   const s = S.site;
   if (S.editing === "location") return `<h2>Getting There</h2><div class="card edit-area">
@@ -713,6 +724,7 @@ function locationView() {
         ${s.rampUrl ? `<div class="map-place"><strong>${esc(s.rampName || "Boat ramp")}</strong><a href="${esc(s.rampUrl)}" target="_blank" rel="noopener">Open in maps</a></div>` : ""}</div>
       <div class="card" style="display:grid;gap:8px"><span class="eyebrow">Directions and parking</span><p style="white-space:pre-wrap">${esc(s.directions)}</p></div>
     </div>
+    <div class="grid2">${windCard()}</div>
     ${editBtn("location")}`;
 }
 binders.location = bindEditing;
@@ -1793,6 +1805,7 @@ function conditionsView() {
           <a class="btn" href="https://tides4fishing.com/us/texas/packery-channel-tcoon#_solunar_activity" target="_blank" rel="noopener" style="text-decoration:none">Open majors &amp; minors</a>
         </div>
       </div>
+      ${windCard()}
     </div>`;
 }
 
